@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersController', type: :request do
-  let(:user) { User.new(first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password', password_confirmation: 'password') }
-
   describe 'GET /new' do
     before do
       get new_user_registration_path
@@ -19,8 +17,10 @@ RSpec.describe 'UsersController', type: :request do
   end
 
   describe 'POST /create' do
+    let(:created_user) { User.find_by(email: 'johndoe@example.com') }
+
     before do
-      post user_registration_path(user), params: { user: { first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password', password_confirmation: 'password' } }
+      post user_registration_path(build(:user)), params: { user: { first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password', password_confirmation: 'password' } }
     end
 
     it 'is works' do
@@ -33,12 +33,10 @@ RSpec.describe 'UsersController', type: :request do
     end
 
     it 'creates new user with first name' do
-      created_user = User.find_by(email: 'johndoe@example.com')
       expect(created_user.first_name).to eq('John')
     end
 
     it 'creates new user with last name' do
-      created_user = User.find_by(email: 'johndoe@example.com')
       expect(created_user.last_name).to eq('Doe')
     end
   end
