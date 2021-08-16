@@ -41,3 +41,5 @@ yarn-debug.log*
 .yarn-integrity
 
 config/database.yml
+# Ignore test key for decrypting credentials
+config/credentials/test.key
