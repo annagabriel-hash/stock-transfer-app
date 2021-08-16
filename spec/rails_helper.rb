@@ -31,6 +31,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseRewinder.clean
   end
+  # Include our new user test helper in all of our system specs
+  config.include Helpers::Authentication, type: :system
 end
 
 Shoulda::Matchers.configure do |config|
