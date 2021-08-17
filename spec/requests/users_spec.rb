@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'UsersController', type: :request do
   describe 'GET /index' do
     before do
+      user = create(:user)
+      sign_in user
       get users_path
     end
 
