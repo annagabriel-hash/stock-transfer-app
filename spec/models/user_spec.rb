@@ -16,4 +16,9 @@ RSpec.describe User, type: :model do
   it 'is not valid without first name' do
     expect(build(:user, first_name: ' ')).not_to be_valid
   end
+
+  it 'is not valid with duplicate email' do
+    create(:user)
+    expect(build(:user, first_name: 'Jane', last_name: 'Doe')).not_to be_valid
+  end
 end
