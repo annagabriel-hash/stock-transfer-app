@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'CreateUsers', type: :system do
   before do
-    driven_by :selenium, using: :chrome
+    driven_by :rack_test
     # Fill in form
     fill_in_signup_form(build(:user))
   end
@@ -21,6 +21,14 @@ RSpec.describe 'CreateUsers', type: :system do
       fill_in 'First name', with: ' '
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('First name can\'t be blank')
+    end
+  end
+
+  context 'without email', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      fill_in 'Email', with: ' '
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Email can\'t be blank')
     end
   end
 end
