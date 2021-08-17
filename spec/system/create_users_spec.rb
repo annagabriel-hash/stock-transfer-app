@@ -31,4 +31,13 @@ RSpec.describe 'CreateUsers', type: :system do
       expect(page).to have_content('Email can\'t be blank')
     end
   end
+
+  context 'with duplicate email', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      create(:user)
+      fill_in 'First name', with: 'Jane'
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Email has already been taken')
+    end
+  end
 end
