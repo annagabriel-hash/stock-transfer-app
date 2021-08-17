@@ -3,15 +3,14 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th colspan=3>Action</th>
+      <th colspan=2>Action</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td>View</td>
-        <td>Edit</td>
+        <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
         <td>Delete</td>
       </tr>
     <% end %>
