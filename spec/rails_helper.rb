@@ -34,6 +34,7 @@ RSpec.configure do |config|
   # Include test helpers
   config.include Helpers::Authentication, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 end
 
 Shoulda::Matchers.configure do |config|
