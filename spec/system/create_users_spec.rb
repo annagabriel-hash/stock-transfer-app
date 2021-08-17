@@ -15,4 +15,41 @@ RSpec.describe 'CreateUsers', type: :system do
       expect(page).to have_content('John Doe')
     end
   end
+
+  context 'without first name', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      fill_in 'First name', with: ' '
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('First name can\'t be blank')
+      expect(page).to have_content('Sign up')
+    end
+  end
+
+  context 'without email', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      fill_in 'Email', with: ' '
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Email can\'t be blank')
+      expect(page).to have_content('Sign up')
+    end
+  end
+
+  context 'with duplicate email', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      create(:user)
+      fill_in 'First name', with: 'Jane'
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Email has already been taken')
+      expect(page).to have_content('Sign up')
+    end
+  end
+
+  context 'with password confirmation not matching with password', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      fill_in 'Password confirmation', with: 'notmatch'
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Password confirmation doesn\'t match Password')
+      expect(page).to have_content('Sign up')
+    end
+  end
 end
