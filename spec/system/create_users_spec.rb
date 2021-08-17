@@ -10,8 +10,8 @@ RSpec.describe 'CreateUsers', type: :system do
   context 'with valid inputs', :aggregate_failures do
     it 'saves the new user and display record' do
       expect { click_on 'Sign up' }.to change(User, :count).by(1)
-      expect(page).to have_current_path(user_path)
-      expect(page).to have_content('Account was created succesfully')
+      expect(page).to have_current_path(root_path)
+      expect(page).to have_content('Welcome! You have signed up successfully')
       expect(page).to have_content('John Doe')
     end
   end
