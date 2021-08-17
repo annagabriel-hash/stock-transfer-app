@@ -21,6 +21,7 @@ RSpec.describe 'CreateUsers', type: :system do
       fill_in 'First name', with: ' '
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('First name can\'t be blank')
+      expect(page).to have_content('Sign up')
     end
   end
 
@@ -29,6 +30,7 @@ RSpec.describe 'CreateUsers', type: :system do
       fill_in 'Email', with: ' '
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('Email can\'t be blank')
+      expect(page).to have_content('Sign up')
     end
   end
 
@@ -38,6 +40,7 @@ RSpec.describe 'CreateUsers', type: :system do
       fill_in 'First name', with: 'Jane'
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('Email has already been taken')
+      expect(page).to have_content('Sign up')
     end
   end
 
@@ -46,6 +49,7 @@ RSpec.describe 'CreateUsers', type: :system do
       fill_in 'Password confirmation', with: 'notmatch'
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('Password confirmation doesn\'t match Password')
+      expect(page).to have_content('Sign up')
     end
   end
 end
