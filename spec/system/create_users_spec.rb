@@ -40,4 +40,12 @@ RSpec.describe 'CreateUsers', type: :system do
       expect(page).to have_content('Email has already been taken')
     end
   end
+
+  context 'with password confirmation not matching with password', :aggregate_failures do
+    it 'generates an error message and render sign in page' do
+      fill_in 'Password confirmation', with: 'notmatch'
+      expect { click_on 'Sign up' }.not_to change(User, :count)
+      expect(page).to have_content('Password confirmation doesn\'t match Password')
+    end
+  end
 end
