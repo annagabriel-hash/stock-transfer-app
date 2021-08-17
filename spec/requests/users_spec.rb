@@ -15,6 +15,11 @@ RSpec.describe 'UsersController', type: :request do
     it 'renders' do
       expect(response).to render_template(:index)
     end
+
+    it 'assigns users' do
+      create(:user, email: 'janedoe@example.com')
+      expect(assigns(:users)).to eq(User.all)
+    end
   end
 
   describe 'GET /new' do
