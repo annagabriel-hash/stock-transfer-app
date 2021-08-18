@@ -21,4 +21,12 @@ RSpec.describe User, type: :model do
     create(:user)
     expect(build(:user, first_name: 'Jane', last_name: 'Doe')).not_to be_valid
   end
+
+  it 'can be assigned with multiple roles' do
+    user = create(:user)
+    roles_list = [create(:role), create(:role, :admin)]
+    user.roles = roles_list
+    user.save!
+    expect(user.reload.roles).to match_array(roles_list)
+  end
 end
