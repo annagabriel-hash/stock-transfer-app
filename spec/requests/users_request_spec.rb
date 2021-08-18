@@ -17,7 +17,6 @@ RSpec.describe 'UsersController', type: :request do
     end
 
     it 'assigns users' do
-      create(:user, email: 'janedoe@example.com')
       expect(assigns(:users)).to eq(User.all)
     end
   end
