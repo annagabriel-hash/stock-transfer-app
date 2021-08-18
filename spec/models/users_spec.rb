@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'is valid with valid attributes' do
-    expect(build(:user)).to be_valid
+    expect(build(:user, :buyer)).to be_valid
   end
 
   it 'has full name attribute' do
@@ -20,5 +20,13 @@ RSpec.describe User, type: :model do
   it 'is not valid with duplicate email' do
     create(:user)
     expect(build(:user, first_name: 'Jane', last_name: 'Doe')).not_to be_valid
+  end
+
+  it 'can be assigned with multiple roles' do
+    user = create(:user)
+    roles_list = [create(:role), create(:role, :admin)]
+    user.roles = roles_list
+    user.save!
+    expect(user.reload.roles).to match_array(roles_list)
   end
 end

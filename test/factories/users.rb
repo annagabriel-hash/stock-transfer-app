@@ -7,6 +7,9 @@ FactoryBot.define do
     email { 'johndoe@example.com' }
     password { 'password' }
     password_confirmation { 'password' }
+    trait :buyer do
+      roles { [association(:role)] }
+    end
   end
 
   factory :random_user, class: User do

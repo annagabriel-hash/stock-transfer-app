@@ -4,7 +4,7 @@ RSpec.describe 'ListUsers', type: :system do
   let(:user_list) do
     build_list(:user, 10) do |user, i|
       user.email = "person#{i}@example.com"
-      user.save
+      user.save!
     end
   end
 
