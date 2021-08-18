@@ -11,7 +11,7 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
-        <td>Delete</td>
+        <td><%= link_to 'View', user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
