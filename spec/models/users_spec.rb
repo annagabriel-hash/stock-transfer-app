@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'is valid with valid attributes' do
-    expect(build(:user)).to be_valid
+    expect(build(:user, :buyer)).to be_valid
   end
 
   it 'has full name attribute' do
