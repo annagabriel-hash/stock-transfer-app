@@ -8,5 +8,11 @@ module Helpers
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
     end
+
+    def fill_in_signin_form(login_path, user)
+      visit login_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+    end
   end
 end
