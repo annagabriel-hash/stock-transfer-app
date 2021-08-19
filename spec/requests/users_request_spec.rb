@@ -1,23 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersController', type: :request do
-  describe 'GET /index' do
+  describe 'GET /admin/index' do
     before do
-      user = create(:user)
+      user = create(:user, :admin)
       sign_in user
-      get users_path
+      get admin_users_path
     end
 
-    it 'works' do
-      expect(response).to have_http_status(:ok)
-    end
+    context 'when user is logged in' do
+      it 'works' do
+        expect(response).to have_http_status(:ok)
+      end
 
-    it 'renders' do
-      expect(response).to render_template(:index)
-    end
+      it 'renders' do
+        expect(response).to render_template(:index)
+      end
 
-    it 'assigns users' do
-      expect(assigns(:users)).to eq(User.all)
+      it 'assigns users' do
+        expect(assigns(:users)).to eq(User.all)
+      end
     end
   end
 
