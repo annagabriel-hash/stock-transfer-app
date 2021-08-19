@@ -24,7 +24,7 @@
 
 			<div class="mb-3">
 				<h3>Roles:</h3>
-				<%= f.collection_check_boxes(:role_ids, Role.all, :id, :name) do |b| %>
+				<%= f.collection_check_boxes(:role_ids, Role.order(:id), :id, :name) do |b| %>
 					<div class="form-check">
 						<%= b.label(class: "form-check-label text-capitalize") %>
 						<%= b.check_box(class: "form-check-input text-capitalize") %>
