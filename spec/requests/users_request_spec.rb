@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'UsersController', type: :request do
   describe 'GET /admin/index' do
-    before do
-      user = create(:user, :admin)
-      sign_in user
-      get admin_users_path
-    end
+    context 'when admin user is logged in' do
+      before do
+        user = create(:user, :admin)
+        sign_in user
+        get admin_users_path
+      end
 
-    context 'when user is logged in' do
       it 'works' do
         expect(response).to have_http_status(:ok)
       end
@@ -19,6 +19,23 @@ RSpec.describe 'UsersController', type: :request do
 
       it 'assigns users' do
         expect(assigns(:users)).to eq(User.all)
+      end
+    end
+
+    context 'when user is not an admin' do
+      before do
+        create(:role, :admin)
+        user = create(:user)
+        sign_in user
+        get admin_users_path
+      end
+
+      it 'does not work' do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'generates an error message' do
+        expect(flash[:alert]).to be_present
       end
     end
   end

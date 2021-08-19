@@ -12,6 +12,7 @@ FactoryBot.define do
     end
 
     trait :admin do
+      email { 'admin@example.com' }
       roles { [association(:role, :admin)] }
     end
     before(:create) { create(:role) }

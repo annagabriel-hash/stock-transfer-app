@@ -12,6 +12,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def admin?
+    admin_role_id = Role.find_by(name: 'admin').id
+    roles.exists?(admin_role_id)
+  end
+
   private
 
   def set_default_role
