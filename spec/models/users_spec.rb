@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
     admin_user = create(:user, :admin)
     expect(admin_user.admin?).to be true
   end
-  
+
   context 'when user is not an admin'
   it 'admin attribute returns false' do
     create(:role, :admin)
