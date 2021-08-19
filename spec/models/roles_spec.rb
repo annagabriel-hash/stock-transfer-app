@@ -10,8 +10,8 @@ RSpec.describe Role, type: :model do
   end
 
   it 'has unique names' do
-    create(:role)
-    duplicate_role = build(:role, name: 'BUYeR')
+    role = create(:role)
+    duplicate_role = build(:role, name: role.name.upcase)
     expect(duplicate_role).not_to be_valid
   end
 

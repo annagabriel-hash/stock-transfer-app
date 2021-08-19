@@ -39,10 +39,11 @@ RSpec.describe 'UsersController', type: :request do
     let(:created_user) { User.find_by(email: 'johndoe@example.com') }
 
     before do
+      create(:role)
       post user_registration_path(build(:user)), params: { user: { first_name: 'John', last_name: 'Doe', email: 'johndoe@example.com', password: 'password', password_confirmation: 'password' } }
     end
 
-    it 'is works' do
+    it 'works' do
       expect(response).to have_http_status(:redirect)
     end
 
