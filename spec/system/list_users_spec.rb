@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'ListUsers', type: :system do
-  let(:user_list) do
+  let(:admin_user) { create(:user, :admin) }
+  let!(:user_list) do
+    create(:role)
     build_list(:user, 10) do |user, i|
       user.email = "person#{i}@example.com"
       user.save!
@@ -10,24 +12,33 @@ RSpec.describe 'ListUsers', type: :system do
 
   before do
     driven_by(:rack_test)
-    create(:role)
-    sign_in user_list.first
-    visit users_path
+    sign_in admin_user
+    visit admin_users_path
   end
 
-  it 'displays all registered users' do
-    within 'tbody' do
-      expect(page).to have_selector('tr', count: 10)
+  context 'when admin user is logged in' do
+    it 'displays all registered users' do
+      within 'tbody' do
+        expect(page).to have_selector('tr', count: 11)
+      end
+    end
+
+    it 'shows edit user page when edit button is clicked' do
+      find_link('Edit', href: edit_user_registration_path(user_list.second)).click
+      expect(page).to have_current_path(edit_user_registration_path(user_list.second))
+    end
+
+    it 'view user information when view button is clicked' do
+      find_link('View', href: admin_user_path(user_list.second)).click
+      expect(page).to have_current_path(admin_user_path(user_list.second))
     end
   end
 
-  it 'shows edit user page when edit button is clicked' do
-    find_link('Edit', href: edit_user_registration_path(user_list.second)).click
-    expect(page).to have_current_path(edit_user_registration_path(user_list.second))
-  end
-
-  it 'view user information when view button is clicked' do
-    find_link('View', href: user_path(user_list.second)).click
-    expect(page).to have_current_path(user_path(user_list.second))
+  context 'when admin user is not logged in' do
+    it 'cannot display user list' do
+      sign_out admin_user
+      visit admin_users_path
+      expect(page).not_to have_current_path(admin_users_path)
+    end
   end
 end
