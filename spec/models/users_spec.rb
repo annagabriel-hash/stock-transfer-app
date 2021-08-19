@@ -43,7 +43,6 @@ RSpec.describe User, type: :model do
       user = create(:user, :admin)
       admin_role = Role.find_by(name: 'admin')
       expect(user.roles).to match_array([admin_role])
-      expect(user.roles.count).to eq(1)
     end
   end
 end
