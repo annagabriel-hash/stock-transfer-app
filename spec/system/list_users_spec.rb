@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'ListUsers', type: :system do
   let(:admin_user) { create(:user, :admin) }
+  let(:buyer_user) { create(:user) }
   let!(:user_list) do
     create(:role)
     build_list(:user, 10) do |user, i|
@@ -37,6 +38,15 @@ RSpec.describe 'ListUsers', type: :system do
   context 'when admin user is not logged in' do
     it 'cannot display user list' do
       sign_out admin_user
+      visit admin_users_path
+      expect(page).not_to have_current_path(admin_users_path)
+    end
+  end
+
+  context 'when user is not an admin' do
+    it 'cannot display user list' do
+      sign_out admin_user
+      sign_in buyer_user
       visit admin_users_path
       expect(page).not_to have_current_path(admin_users_path)
     end
