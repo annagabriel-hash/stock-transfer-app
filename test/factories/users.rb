@@ -10,6 +10,11 @@ FactoryBot.define do
     trait :buyer do
       roles { [association(:role)] }
     end
+
+    trait :admin do
+      roles { [association(:role, :admin)] }
+    end
+    before(:create) { create(:role) }
   end
 
   factory :random_user, class: User do

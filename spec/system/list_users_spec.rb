@@ -10,6 +10,7 @@ RSpec.describe 'ListUsers', type: :system do
 
   before do
     driven_by(:rack_test)
+    create(:role)
     sign_in user_list.first
     visit users_path
   end
