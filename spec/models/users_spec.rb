@@ -45,4 +45,17 @@ RSpec.describe User, type: :model do
       expect(user.roles).to match_array([admin_role])
     end
   end
+
+  context 'when user is admin'
+  it 'admin attribute returns true' do
+    admin_user = create(:user, :admin)
+    expect(admin_user.admin?).to be true
+  end
+  
+  context 'when user is not an admin'
+  it 'admin attribute returns false' do
+    create(:role, :admin)
+    buyer_user = create(:user)
+    expect(buyer_user.admin?).to be false
+  end
 end
