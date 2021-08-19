@@ -6,6 +6,7 @@ RSpec.describe 'LoginUsers', type: :system do
 
   before do
     driven_by(:rack_test)
+    create(:role, :admin)
   end
 
   it 'can access login page' do

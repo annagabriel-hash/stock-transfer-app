@@ -6,7 +6,6 @@ RSpec.describe 'EditUsers', type: :system do
 
   before do
     driven_by(:rack_test)
-    # driven_by :selenium, using: :chrome
     sign_in admin_user
     visit edit_admin_user_path(buyer)
   end
@@ -14,7 +13,7 @@ RSpec.describe 'EditUsers', type: :system do
   context 'with valid inputs', :aggregate_failures do
     it 'updates the new user' do
       fill_in 'First name', with: 'Philip'
-      select 'buyer', from: 'user_roles'
+      click_on 'Broker', from: 'user_roles'
       click_on 'Update User'
       expect(buyer.reload.first_name).to eq('Philip')
       expect(page).to have_content('You have successfully update the user')
@@ -24,7 +23,6 @@ RSpec.describe 'EditUsers', type: :system do
   context 'without first name', :aggregate_failures do
     it 'generates an error message and render sign in page' do
       fill_in 'First name', with: ' '
-      select 'buyer', from: 'user_roles'
       click_on 'Update User'
       expect(page).to have_content('First name can\'t be blank')
     end
@@ -33,7 +31,6 @@ RSpec.describe 'EditUsers', type: :system do
   context 'without email', :aggregate_failures do
     it 'generates an error message and render sign in page' do
       fill_in 'Email', with: ' '
-      select 'buyer', from: 'user_roles'
       click_on 'Update User'
       expect(page).to have_content('Email can\'t be blank')
     end

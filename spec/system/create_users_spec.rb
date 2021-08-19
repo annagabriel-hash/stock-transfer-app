@@ -4,6 +4,7 @@ RSpec.describe 'CreateUsers', type: :system do
   before do
     driven_by :rack_test
     create(:role)
+    create(:role, :admin)
     # Fill in form
     fill_in_signup_form(build(:user))
   end
