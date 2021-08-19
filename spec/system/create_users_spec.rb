@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'CreateUsers', type: :system do
   before do
     driven_by :rack_test
+    create(:role)
     # Fill in form
     fill_in_signup_form(build(:user))
   end
@@ -50,6 +51,14 @@ RSpec.describe 'CreateUsers', type: :system do
       expect { click_on 'Sign up' }.not_to change(User, :count)
       expect(page).to have_content('Password confirmation doesn\'t match Password')
       expect(page).to have_content('Sign up')
+    end
+  end
+
+  context 'without roles' do
+    it 'assigns buyer role' do
+      click_on 'Sign up'
+      user = User.find_by(email: 'johndoe@example.com')
+      expect(user.roles.first.name).to eq('buyer')
     end
   end
 end
