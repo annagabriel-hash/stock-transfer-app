@@ -1,2 +1,6 @@
 <h1><%= current_user.full_name %></h1>
 <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+
+<% if current_user.admin? %>
+  <%= link_to 'User Management', admin_users_path %>
+<% end %>
