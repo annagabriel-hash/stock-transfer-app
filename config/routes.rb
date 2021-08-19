@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'users#dashboard'
   namespace :admin do
-    resources :users, only: %i[index show]
+    resources :users, only: %i[index show edit update]
   end
   get 'my_dashboard', to: 'users#dashboard'
 end

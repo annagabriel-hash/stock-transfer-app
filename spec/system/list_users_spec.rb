@@ -25,8 +25,8 @@ RSpec.describe 'ListUsers', type: :system do
     end
 
     it 'shows edit user page when edit button is clicked' do
-      find_link('Edit', href: edit_user_registration_path(user_list.second)).click
-      expect(page).to have_current_path(edit_user_registration_path(user_list.second))
+      find_link('Edit', href: edit_admin_user_path(user_list.second)).click
+      expect(page).to have_current_path(edit_admin_user_path(user_list.second))
     end
 
     it 'view user information when view button is clicked' do

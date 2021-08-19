@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersController', type: :request do
+  let(:admin_user) { create(:user, :admin) }
+  let(:buyer_user) { create(:user) }
+
   describe 'GET /admin/index' do
     context 'when admin user is logged in' do
       before do
-        user = create(:user, :admin)
-        sign_in user
+        sign_in admin_user
         get admin_users_path
       end
 
@@ -77,6 +79,25 @@ RSpec.describe 'UsersController', type: :request do
 
     it 'creates new user with last name' do
       expect(created_user.last_name).to eq('Doe')
+    end
+  end
+
+  describe 'GET /edit' do
+    before do
+      sign_in admin_user
+      get edit_admin_user_path(buyer_user)
+    end
+
+    it 'works' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'renders' do
+      expect(response).to render_template(:edit)
+    end
+
+    it 'assigns user' do
+      expect(assigns(:user)).to eq(buyer_user)
     end
   end
 end
