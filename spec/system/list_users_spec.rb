@@ -12,7 +12,7 @@ RSpec.describe 'ListUsers', type: :system do
   end
 
   before do
-    driven_by(:rack_test)
+    driven_by :selenium, using: :chrome
     sign_in admin_user
     visit admin_users_path
   end

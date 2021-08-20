@@ -5,7 +5,7 @@ RSpec.describe 'LoginUsers', type: :system do
   let(:random_user) { build(:random_user) }
 
   before do
-    driven_by(:rack_test)
+    driven_by :selenium, using: :chrome
     create(:role, :admin)
   end
 

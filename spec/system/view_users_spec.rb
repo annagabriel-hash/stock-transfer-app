@@ -5,7 +5,7 @@ RSpec.describe 'ViewUsers', type: :system do
   let!(:buyer) { create(:user) }
 
   before do
-    driven_by :rack_test
+    driven_by :selenium, using: :chrome
     sign_in admin_user
     visit admin_user_path(buyer)
   end
@@ -19,7 +19,7 @@ RSpec.describe 'ViewUsers', type: :system do
       expect(page).to have_content(buyer.email)
       expect(page).to have_content(buyer.first_name)
       expect(page).to have_content(buyer.last_name)
-      expect(page).to have_content(buyer.roles.first.name)
+      expect(page).to have_content(buyer.roles.first.name.capitalize)
     end
   end
 

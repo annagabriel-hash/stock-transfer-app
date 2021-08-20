@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'CreateUsers', type: :system do
   before do
-    driven_by :rack_test
+    driven_by :selenium, using: :chrome
     create(:role)
     create(:role, :admin)
     # Fill in form
