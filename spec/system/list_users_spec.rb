@@ -19,9 +19,8 @@ RSpec.describe 'ListUsers', type: :system do
 
   context 'when admin user is logged in' do
     it 'displays all registered users' do
-      within 'tbody' do
-        expect(page).to have_selector('tr', count: 11)
-      end
+      expected_regex = /#{User.all.map(&:email).join('.*')}/
+      expect(page).to have_text(expected_regex)
     end
 
     it 'shows edit user page when edit button is clicked' do
