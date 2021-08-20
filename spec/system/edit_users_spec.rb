@@ -5,7 +5,7 @@ RSpec.describe 'EditUsers', type: :system do
   let(:user) { create(:user) }
 
   before do
-    driven_by :selenium, using: :chrome
+    driven_by(:rack_test)
     create(:role, :broker)
     sign_in admin_user
     visit edit_admin_user_path(user)
