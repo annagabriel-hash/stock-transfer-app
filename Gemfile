@@ -23,6 +23,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use faker to generate fake data
   gem 'faker'
+  gem 'hirb'
 end
 
 group :development do
