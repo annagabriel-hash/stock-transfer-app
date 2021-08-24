@@ -2,7 +2,7 @@
 name: User story
 about: Add a user story for this project
 title: ''
-labels: ''
+labels: 'App: Backend, State: Backlog, Type: Feature'
 assignees: ''
 
 ---
@@ -15,3 +15,4 @@ assignees: ''
 - [ ] accepts...
 - [ ] validates...
 - [ ] generates...
+- [ ] Given [precondition], when I [do some action] then I expect [result]”
