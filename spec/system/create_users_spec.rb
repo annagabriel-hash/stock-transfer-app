@@ -61,5 +61,11 @@ RSpec.describe 'CreateUsers', type: :system do
       user = User.find_by(email: 'johndoe@example.com')
       expect(user.roles.first.name).to eq('buyer')
     end
+
+    it 'sets user status to approved' do
+      click_on 'Sign up'
+      user = User.find_by(email: 'johndoe@example.com')
+      expect(user.status).to eq('approved')
+    end
   end
 end

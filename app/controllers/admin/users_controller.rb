@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update approve]
   before_action :authenticate_user!, :require_admin
 
   def index
@@ -17,6 +17,10 @@ class Admin::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def approve
+    @user.approved!
   end
 
   private

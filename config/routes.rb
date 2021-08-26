@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'users#dashboard'
   namespace :admin do
     resources :users, only: %i[index show edit update]
+    patch 'users/:id/approve', to: 'users#approve', as: 'user_approve'
   end
   get 'my_dashboard', to: 'users#dashboard'
 end

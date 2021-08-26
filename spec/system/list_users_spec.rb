@@ -5,8 +5,10 @@ RSpec.describe 'ListUsers', type: :system do
   let(:buyer_user) { create(:user) }
   let!(:user_list) do
     create(:role)
+    broker = create(:role, :broker)
     build_list(:user, 10) do |user, i|
       user.email = "person#{i}@example.com"
+      user.roles.push(broker) if i == 1
       user.save!
     end
   end
@@ -31,6 +33,17 @@ RSpec.describe 'ListUsers', type: :system do
     it 'view user information when view button is clicked' do
       find_link('View', href: admin_user_path(user_list.second)).click
       expect(page).to have_current_path(admin_user_path(user_list.second))
+    end
+
+    it 'disables approve button when user status is approved', aggregate_failures: true do
+      expect(user_list.first.status).to eq('approved')
+      expect(page).not_to have_link('Approve', href: admin_user_approve_path(user_list.first))
+    end
+
+    it 'approves broker when approve button is clicked' do
+      expect do
+        find_link('Approve', href: admin_user_approve_path(user_list.second)).click
+      end.to change { user_list.second.reload.status }.to('approved')
     end
   end
 
