@@ -43,3 +43,4 @@ yarn-debug.log*
 config/database.yml
 # Ignore test key for decrypting credentials
 config/credentials/test.key
+.vscode/settings.json

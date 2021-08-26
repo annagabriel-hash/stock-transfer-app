@@ -30,19 +30,32 @@ RSpec.describe User, type: :model do
     expect(user.reload.roles).to match_array(roles_list)
   end
 
-  context 'when created has no role' do
+  context 'when created with no role' do
     it 'has a buyer role' do
       user = create(:user)
       default_role = Role.find_by(name: 'buyer')
       expect(user.roles).to match_array([default_role])
     end
+
+    it 'has an approved status' do
+      user = create(:user)
+      expect(user.status).to eq('approved')
+    end
   end
 
   context 'when created with role' do
-    it 'has no default buyer role' do
+    it 'assigns the specified role' do
       user = create(:user, :admin)
       admin_role = Role.find_by(name: 'admin')
       expect(user.roles).to match_array([admin_role])
+    end
+  end
+
+  context 'when added with broker role' do
+    it 'changes user status to pending' do
+      user = create(:user)
+      broker = create(:role, :broker)
+      expect { user.roles << broker }.to change { user.status }.to('pending')
     end
   end
 
