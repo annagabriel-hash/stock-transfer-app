@@ -55,8 +55,7 @@ RSpec.describe User, type: :model do
     it 'changes user status to pending' do
       user = create(:user)
       broker = create(:role, :broker)
-      user.roles << broker
-      expect(user.status).to eq('pending')
+      expect { user.roles << broker }.to change { user.status }.to('pending')
     end
   end
 
