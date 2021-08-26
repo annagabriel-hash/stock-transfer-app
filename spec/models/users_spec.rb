@@ -30,14 +30,14 @@ RSpec.describe User, type: :model do
     expect(user.reload.roles).to match_array(roles_list)
   end
 
-  context 'when created has no role' do
+  context 'when created with no role and no status' do
     it 'has a buyer role' do
       user = create(:user)
       default_role = Role.find_by(name: 'buyer')
       expect(user.roles).to match_array([default_role])
     end
 
-    it 'has pending status' do
+    it 'has a pending status' do
       user = create(:user)
       expect(user.status).to eq('pending')
     end
