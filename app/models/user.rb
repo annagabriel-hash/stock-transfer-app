@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
   before_create :set_default_role
+  enum status: %i[pending approved]
 
   def full_name
     "#{first_name} #{last_name}"
