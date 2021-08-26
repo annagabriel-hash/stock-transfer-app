@@ -36,6 +36,11 @@ RSpec.describe User, type: :model do
       default_role = Role.find_by(name: 'buyer')
       expect(user.roles).to match_array([default_role])
     end
+
+    it 'has pending status' do
+      user = create(:user)
+      expect(user.status).to eq('pending')
+    end
   end
 
   context 'when created with role' do
