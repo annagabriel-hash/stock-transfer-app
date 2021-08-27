@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
   before_create :set_default_role
+  after_create :send_email, if: :approved?
   enum status: { pending: 0, approved: 1 }
 
   def full_name
@@ -22,5 +23,9 @@ class User < ApplicationRecord
 
   def set_default_role
     roles << Role.find_by(name: 'buyer') if roles.empty?
+  end
+
+  def send_email
+    UserMailer.welcome_email(self).deliver_later
   end
 end
