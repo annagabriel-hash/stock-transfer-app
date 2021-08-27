@@ -59,13 +59,27 @@ RSpec.describe 'CreateUsers', type: :system do
     it 'assigns buyer role' do
       click_on 'Sign up'
       user = User.find_by(email: 'johndoe@example.com')
-      expect(user.roles.first.name).to eq('buyer')
+      default_role = Role.find_by(name: 'buyer')
+      expect(user.roles).to match_array([default_role])
     end
 
-    it 'sets user status to approved' do
+    it 'assigns user status to approved' do
       click_on 'Sign up'
       user = User.find_by(email: 'johndoe@example.com')
       expect(user.status).to eq('approved')
+    end
+
+    it 'welcome email is sent', :aggregate_failures do
+      expect { click_on 'Sign up' }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.subject).to eq 'Welcome to the Stock App'
+    end
+
+    it 'welcome email is sent to the right user' do
+      click_on 'Sign up'
+      mail = ActionMailer::Base.deliveries.last
+      user = User.find_by(email: 'johndoe@example.com')
+      expect(mail.to[0]).to eq user.email
     end
   end
 end
