@@ -4,7 +4,7 @@ RSpec.describe UserMailer, type: :mailer do
   let(:user) { create(:user) }
 
   describe 'welcome email' do
-    let(:mail) { described_class.with(id: user.id).welcome_email }
+    let(:mail) { described_class.welcome_email(user) }
 
     it 'renders welcome headers' do
       expect(mail.subject).to eq('Welcome to the Stock App')
