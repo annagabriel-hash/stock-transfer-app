@@ -38,4 +38,20 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.body.encoded).to have_link('Verify account', href: user_confirm_url(user))
     end
   end
+
+  describe 'confirmation email' do
+    let(:mail) { described_class.confirmation_email(user) }
+
+    it 'renders welcome headers' do
+      expect(mail.subject).to eq('Stock App - Account successfully verified')
+    end
+
+    it 'sets user email as the receipient' do
+      expect(mail.to).to eq([user.email])
+    end
+
+    it 'renders body' do
+      expect(mail.body.encoded).to match('Account successfully verified')
+    end
+  end
 end

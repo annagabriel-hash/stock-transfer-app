@@ -7,4 +7,8 @@ class UserMailerPreview < ActionMailer::Preview
   def verify_email
     UserMailer.verify_email(User.first)
   end
+
+  def confirmation_email
+    UserMailer.confirmation_email(User.first)
+  end
 end
