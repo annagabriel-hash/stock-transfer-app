@@ -22,6 +22,8 @@ RSpec.describe User, type: :model do
     expect(build(:user, first_name: 'Jane', last_name: 'Doe')).not_to be_valid
   end
 
+  it { is_expected.to respond_to(:upgrade_account) }
+
   it 'can be assigned with multiple roles' do
     user = create(:user)
     roles_list = [create(:role), create(:role, :broker)]
@@ -70,5 +72,19 @@ RSpec.describe User, type: :model do
     create(:role, :admin)
     buyer_user = create(:user)
     expect(buyer_user.admin?).to be false
+  end
+
+  context 'when user upgrades account' do
+    let(:buyer_user) { create(:user) }
+    let!(:broker_role) { create(:role, :broker) }
+
+    it 'adds broker role' do
+      buyer_user.upgrade_account
+      expect(buyer_user.roles).to include broker_role
+    end
+
+    it 'changes user status to pending' do
+      expect { buyer_user.upgrade_account }.to change(buyer_user, :status).from('approved').to('pending')
+    end
   end
 end

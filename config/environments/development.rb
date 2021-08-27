@@ -61,5 +61,8 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Use RSpec mailer preview
-  config.action_mailer.preview_path = Rails.root.join('/spec/mailers/previews')
+  # config.action_mailer.preview_path = Rails.root.join('/spec/mailers/previews')
+  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+  config.action_mailer.smtp_settings = { address: 'localhost'}
+  config.action_mailer.default_url_options = { host: 'localhost', port: '3000', protocol: 'http' }
 end
