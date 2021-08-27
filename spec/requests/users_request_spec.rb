@@ -118,4 +118,21 @@ RSpec.describe 'UsersController', type: :request do
       expect(UserMailer).to have_received(:verify_email)
     end
   end
+
+  describe 'PATCH /confirm' do
+    let!(:broker_role) { create(:role, :broker) }
+
+    before do
+      sign_in buyer_user
+      patch user_confirm_path(buyer_user.id), params: { id: buyer_user.id }
+    end
+
+    it 'works' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'adds buyer role' do
+      expect(buyer_user.reload.roles).to include broker_role
+    end
+  end
 end

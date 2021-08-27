@@ -8,4 +8,9 @@ class UsersController < ApplicationController
     flash[:notice] = 'Verification email sent'
     redirect_to root_path
   end
+
+  def confirm
+    user = User.find(params[:id])
+    user.upgrade_account
+  end
 end
