@@ -61,10 +61,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Use RSpec mailer preview
-  # config.action_mailer.preview_path = Rails.root.join('/spec/mailers/previews')
-  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+  config.action_mailer.preview_path = Rails.root.join('spec/mailers/previews')
+
+  # Use gmail account to send emails
   config.action_mailer.default_url_options = { host: 'localhost', port: '3000', protocol: 'http' }
-  config.action_mailer.default_options = {from: 'wmmap1217@gmail.com'}
+  config.action_mailer.default_options = { from: 'wmmap1217@gmail.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
@@ -72,6 +73,6 @@ Rails.application.configure do
     user_name:            Rails.application.credentials.gmail_username,
     password:             Rails.application.credentials.gmail_password,
     authentication:       'plain',
-    enable_starttls_auto: true }
-  config.action_mailer.perform_deliveries = true
+    enable_starttls_auto: true
+  }
 end

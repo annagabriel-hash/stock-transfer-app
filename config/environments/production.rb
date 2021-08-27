@@ -109,4 +109,17 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  
+  # Use gmail account to send emails
+  config.action_mailer.default_url_options = { host: 'stock-transfer-app.herokuapp.com', port: '5000', protocol: 'https' }
+  config.action_mailer.default_options = { from: 'wmmap1217@gmail.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    user_name:            Rails.application.credentials.gmail_username,
+    password:             Rails.application.credentials.gmail_password,
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 end
