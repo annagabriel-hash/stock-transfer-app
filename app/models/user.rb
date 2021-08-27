@@ -19,6 +19,10 @@ class User < ApplicationRecord
     roles.exists?(admin_role_id)
   end
 
+  def upgrade_account
+    roles << Role.find_by(name: 'broker')
+  end
+
   private
 
   def set_default_role
