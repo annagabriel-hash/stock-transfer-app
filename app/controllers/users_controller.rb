@@ -10,7 +10,11 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    user = User.find(params[:id])
-    user.upgrade_account
+    @user = User.find(params[:id])
+  end
+
+  def upgrade
+    @user = User.find(params[:id])
+    @user.upgrade_account
   end
 end
