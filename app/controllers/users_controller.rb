@@ -16,5 +16,7 @@ class UsersController < ApplicationController
   def upgrade
     @user = User.find(params[:id])
     @user.upgrade_account
+    flash[:notice] = 'You have successfully updated your account'
+    redirect_to root_path
   end
 end
