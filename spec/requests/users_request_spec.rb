@@ -100,4 +100,22 @@ RSpec.describe 'UsersController', type: :request do
       expect(assigns(:user)).to eq(buyer_user)
     end
   end
+  
+  describe 'GET /verify' do
+    let(:mail) { instance_double(UserMailer) }
+
+    before do
+      allow(UserMailer).to receive(:verify_email).and_call_original
+      sign_in buyer_user
+      get user_confirm_path(buyer_user)
+    end
+
+    it 'works' do
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it 'sends email to user' do
+      expect(UserMailer).to have_received(:verify_email)
+    end
+  end
 end
