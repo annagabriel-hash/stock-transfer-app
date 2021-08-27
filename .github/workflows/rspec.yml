@@ -39,7 +39,7 @@ jobs:
         DATABASE_HOST: 127.0.0.1
         DATABASE_USERNAME: 'postgres'
         DATABASE_PASSWORD: 'test'
-        RAILS_TEST_KEY: ${{ secrets.GMAIL_MASTER_KEY }}
+        RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
 
     - name: Run Rubocop
       run: bundle exec rubocop
