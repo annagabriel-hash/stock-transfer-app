@@ -111,7 +111,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   
   # Use gmail account to send emails
-  config.action_mailer.default_url_options = { host: 'stock-transfer-app.herokuapp.com', port: '5000', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'stock-transfer-app.herokuapp.com', protocol: 'https' }
   config.action_mailer.default_options = { from: 'wmmap1217@gmail.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
