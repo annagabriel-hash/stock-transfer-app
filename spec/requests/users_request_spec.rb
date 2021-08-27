@@ -128,7 +128,7 @@ RSpec.describe 'UsersController', type: :request do
     end
 
     it 'works' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
 
     it 'adds buyer role' do
