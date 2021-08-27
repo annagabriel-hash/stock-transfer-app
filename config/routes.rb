@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     patch 'users/:id/approve', to: 'users#approve', as: 'user_approve'
   end
   get 'my_dashboard', to: 'users#dashboard'
+  get 'user/:id/verify', to: 'users#verify', as: 'user_verify'
+  patch 'user/:id/verify', to: 'users#confirm', as: 'user_confirm'
 end
