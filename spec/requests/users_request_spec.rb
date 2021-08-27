@@ -100,7 +100,7 @@ RSpec.describe 'UsersController', type: :request do
       expect(assigns(:user)).to eq(buyer_user)
     end
   end
-  
+
   describe 'GET /verify' do
     let(:mail) { instance_double(UserMailer) }
 
