@@ -4,3 +4,7 @@
 <% if current_user.admin? %>
   <%= link_to 'User Management', admin_users_path %>
 <% end %>
+
+<% if basic_account?(current_user) %>
+  <%= link_to 'Verify account', user_confirm_path(current_user) %>
+<% end %>

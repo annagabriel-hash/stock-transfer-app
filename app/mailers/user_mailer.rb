@@ -17,4 +17,12 @@ class UserMailer < ApplicationMailer
       subject: 'Stock App - Verify account'
     )
   end
+
+  def confirmation_email(user)
+    @user = user
+    mail(
+      to: @user.email,
+      subject: 'Stock App - Account successfully verified'
+    )
+  end
 end

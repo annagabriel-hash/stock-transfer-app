@@ -115,7 +115,7 @@ RSpec.describe 'UsersController', type: :request do
     end
 
     it 'sends email to user' do
-      expect(UserMailer).to have_received(:verify_email)
+      expect(UserMailer).to have_received(:verify_email).once
     end
   end
 

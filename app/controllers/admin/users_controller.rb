@@ -21,6 +21,8 @@ class Admin::UsersController < ApplicationController
 
   def approve
     @user.approved!
+    UserMailer.confirmation_email(@user).deliver_later
+    redirect_to admin_users_path
   end
 
   private
