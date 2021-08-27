@@ -17,12 +17,12 @@ RSpec.describe 'VerifyUsers', type: :system do
     end
 
     it 'has verify account link' do
-      expect(page).to have_link('Verify account', href: user_confirm_path(buyer_user))
+      expect(page).to have_link('Verify account', href: user_verify_path(buyer_user))
     end
 
     it 'sends verify email', :aggregate_failures do
       expect do
-        find_link('Verify account', href: user_confirm_path(buyer_user)).click
+        find_link('Verify account', href: user_verify_path(buyer_user)).click
       end.to change { ActionMailer::Base.deliveries.count }.by(1)
       mail = ActionMailer::Base.deliveries.last
       expect(mail.subject).to eq 'Stock App - Verify account'

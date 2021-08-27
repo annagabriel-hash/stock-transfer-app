@@ -107,7 +107,7 @@ RSpec.describe 'UsersController', type: :request do
     before do
       allow(UserMailer).to receive(:verify_email).and_call_original
       sign_in buyer_user
-      get user_confirm_path(buyer_user)
+      get user_verify_path(buyer_user)
     end
 
     it 'works' do

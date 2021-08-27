@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
   get 'my_dashboard', to: 'users#dashboard'
   get 'user/:id/verify', to: 'users#verify', as: 'user_verify'
-  patch 'user/:id/verify', to: 'users#confirm', as: 'user_confirm'
+  get 'user/:id/confirm', to: 'users#confirm', as: 'user_confirm'
+  patch 'user/:id/confirm', to: 'users#upgrade'
 end

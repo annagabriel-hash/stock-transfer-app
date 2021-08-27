@@ -6,5 +6,5 @@
 <% end %>
 
 <% if basic_account?(current_user) %>
-  <%= link_to 'Verify account', user_confirm_path(current_user) %>
+  <%= link_to 'Verify account', user_verify_path(current_user) %>
 <% end %>
