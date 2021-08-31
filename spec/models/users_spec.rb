@@ -32,16 +32,20 @@ RSpec.describe User, type: :model do
     expect(user.reload.roles).to match_array(roles_list)
   end
 
-  context 'when created with no role' do
+  context 'when created' do
+    let!(:user) { create(:user) }
+
     it 'has a buyer role' do
-      user = create(:user)
       default_role = Role.find_by(name: 'buyer')
       expect(user.roles).to match_array([default_role])
     end
 
     it 'has an approved status' do
-      user = create(:user)
       expect(user.status).to eq('approved')
+    end
+
+    it 'has an inital balance' do
+      expect(user.balance).to eq(100_000)
     end
   end
 
