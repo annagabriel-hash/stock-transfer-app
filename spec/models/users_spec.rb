@@ -24,71 +24,45 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to respond_to(:upgrade_account) }
 
-  it 'can be assigned with multiple roles' do
-    user = create(:user)
-    roles_list = [create(:role), create(:role, :broker)]
-    user.roles = roles_list
-    user.save!
-    expect(user.reload.roles).to match_array(roles_list)
-  end
-
   context 'when created' do
-    let!(:user) { create(:user) }
+    subject(:user) { create(:user) }
 
-    it 'has a buyer role' do
-      default_role = Role.find_by(name: 'buyer')
-      expect(user.roles).to match_array([default_role])
-    end
+    let(:default_role) { create(:role) }
 
-    it 'has an approved status' do
-      expect(user.status).to eq('approved')
-    end
+    it { is_expected.to be_approved }
+    it { is_expected.to have_attributes(balance: 100_000, roles: [default_role]) }
 
-    it 'has an inital balance' do
-      expect(user.balance).to eq(100_000)
+    it 'is not an admin' do
+      create(:role, :admin)
+      expect(user).not_to be_admin
     end
   end
 
-  context 'when created with role' do
-    it 'assigns the specified role' do
-      user = create(:user, :admin)
-      admin_role = Role.find_by(name: 'admin')
-      expect(user.roles).to match_array([admin_role])
-    end
-  end
+  context 'when user is admin' do
+    subject { create(:user, :admin) }
 
-  context 'when added with broker role' do
-    it 'changes user status to pending' do
-      user = create(:user)
-      broker = create(:role, :broker)
-      expect { user.roles << broker }.to change { user.status }.to('pending')
-    end
-  end
+    let(:admin_role) { Role.find_by(name: 'admin') }
 
-  context 'when user is admin'
-  it 'admin attribute returns true' do
-    admin_user = create(:user, :admin)
-    expect(admin_user.admin?).to be true
-  end
-
-  context 'when user is not an admin'
-  it 'admin attribute returns false' do
-    create(:role, :admin)
-    buyer_user = create(:user)
-    expect(buyer_user.admin?).to be false
+    it { is_expected.to be_admin }
+    it { is_expected.to have_attributes(roles: [admin_role]) }
   end
 
   context 'when user upgrades account' do
-    let(:buyer_user) { create(:user) }
-    let!(:broker_role) { create(:role, :broker) }
+    subject(:user) { create(:user) }
 
-    it 'adds broker role' do
-      buyer_user.upgrade_account
-      expect(buyer_user.roles).to include broker_role
+    let(:buyer_role) { create(:role) }
+    let(:broker_role) { create(:role, :broker) }
+
+    before do
+      create(:role, :broker)
+      user.upgrade_account
     end
 
-    it 'changes user status to pending' do
-      expect { buyer_user.upgrade_account }.to change(buyer_user, :status).from('approved').to('pending')
+    it { is_expected.to have_attributes(roles: [buyer_role, broker_role]) }
+    it { is_expected.to be_pending }
+
+    it 'has multiple roles' do
+      expect(user.roles.count).to be > 1
     end
   end
 end
