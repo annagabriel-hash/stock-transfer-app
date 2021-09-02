@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
+  has_many :user_stocks, dependent: :destroy
+  has_many :stocks, through: :user_stocks
   before_create :set_default_role
   after_create :send_email, if: :approved?
   enum status: { pending: 0, approved: 1 }

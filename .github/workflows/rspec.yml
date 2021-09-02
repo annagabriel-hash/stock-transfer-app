@@ -40,6 +40,8 @@ jobs:
         DATABASE_USERNAME: 'postgres'
         DATABASE_PASSWORD: 'test'
         RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
+        IEX_PUBLISHABLE_TOKEN: ${{ secrets.IEX_PUBLISHABLE_TOKEN }}
+        IEX_SECRET_TOKEN: ${{ secrets.IEX_SECRET_TOKEN }}
 
     - name: Run Rubocop
       run: bundle exec rubocop
@@ -51,3 +53,5 @@ jobs:
         DATABASE_USERNAME: 'postgres'
         DATABASE_PASSWORD: 'test'
         RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
+        IEX_PUBLISHABLE_TOKEN: ${{ secrets.IEX_PUBLISHABLE_TOKEN }}
+        IEX_SECRET_TOKEN: ${{ secrets.IEX_SECRET_TOKEN }}

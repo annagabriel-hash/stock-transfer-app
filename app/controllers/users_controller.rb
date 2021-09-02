@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def dashboard; end
+  def dashboard
+    @stock = Stock.new
+  end
 
   def verify
     UserMailer.verify_email(current_user).deliver_later

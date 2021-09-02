@@ -46,3 +46,6 @@ config/credentials/test.key
 .vscode/settings.json
 
 /config/credentials/development.key
+
+# Ignore application configuration
+/config/application.yml
