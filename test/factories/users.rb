@@ -16,6 +16,8 @@ FactoryBot.define do
       roles { [association(:role, :admin)] }
     end
     before(:create) { create(:role) }
+    before(:create) { create(:role, :broker) }
+    before(:create) { create(:role, :admin) }
   end
 
   factory :random_user, class: User do
