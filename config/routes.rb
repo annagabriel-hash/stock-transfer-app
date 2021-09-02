@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get 'user/:id/verify', to: 'users#verify', as: 'user_verify'
   get 'user/:id/confirm', to: 'users#confirm', as: 'user_confirm'
   patch 'user/:id/confirm', to: 'users#upgrade'
+  get 'search_stock', to: 'stocks#search'
 end
