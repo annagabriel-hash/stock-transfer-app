@@ -51,6 +51,7 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.ignore_localhost = true
   c.configure_rspec_metadata!
+  c.match_requests_on: %i[method uri body]
   c.filter_sensitive_data('test-iex-api-publishable-token') { ENV.fetch('IEX_PUBLISHABLE_TOKEN') { Rails.application.credentials.publishable_token } }
   c.filter_sensitive_data('test-iex-api-secret-token') { ENV.fetch('IEX_SECRET_TOKEN') { Rails.application.credentials.secret_token } }
 end
