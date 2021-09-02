@@ -55,6 +55,6 @@ VCR.configure do |c|
     match_requests_on: %i[method uri body]
   }
   c.allow_http_connections_when_no_cassette = true
-  c.filter_sensitive_data('test-iex-api-publishable-token') { ENV.fetch('IEX_PUBLISHABLE_TOKEN') { Rails.application.credentials.publishable_token } }
-  c.filter_sensitive_data('test-iex-api-secret-token') { ENV.fetch('IEX_SECRET_TOKEN') { Rails.application.credentials.secret_token } }
+  c.filter_sensitive_data('test-iex-api-publishable-token') { ENV['IEX_PUBLISHABLE_TOKEN'] }
+  c.filter_sensitive_data('test-iex-api-secret-token') { ENV['IEX_SECRET_TOKEN'] }
 end
