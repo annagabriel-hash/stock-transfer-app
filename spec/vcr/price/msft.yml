@@ -13,57 +13,54 @@ http_interactions:
       - application/json; charset=utf-8
       User-Agent:
       - IEX Ruby Client/1.5.0
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
       code: 200
       message: OK
     headers:
-      Server:
+      server:
       - nginx
-      Date:
-      - Thu, 02 Sep 2021 10:40:57 GMT
-      Content-Type:
+      date:
+      - Thu, 02 Sep 2021 13:11:20 GMT
+      content-type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
+      transfer-encoding:
       - chunked
-      Connection:
+      connection:
       - keep-alive
-      Set-Cookie:
-      - ctoken=aaf9f7f82dda477ba9a0d6b61cc74e73; Max-Age=43200; Path=/; Expires=Thu,
-        02 Sep 2021 22:40:57 GMT
-      Iexcloud-Messages-Used:
+      set-cookie:
+      - ctoken=1803734810e541d7a572610588f33470; Max-Age=43200; Path=/; Expires=Fri,
+        03 Sep 2021 01:11:20 GMT
+      iexcloud-messages-used:
       - '11'
-      Iexcloud-Credits-Used:
+      iexcloud-credits-used:
       - '11'
-      Iexcloud-Premium-Messages-Used:
+      iexcloud-premium-messages-used:
       - '0'
-      Iexcloud-Premium-Credits-Used:
+      iexcloud-premium-credits-used:
       - '0'
-      X-Content-Type-Options:
+      x-content-type-options:
       - nosniff
-      Strict-Transport-Security:
+      strict-transport-security:
       - max-age=15768000
-      Access-Control-Allow-Origin:
+      access-control-allow-origin:
       - "*"
-      Access-Control-Allow-Credentials:
+      access-control-allow-credentials:
       - 'true'
-      Access-Control-Allow-Methods:
+      access-control-allow-methods:
       - GET, OPTIONS
-      Access-Control-Allow-Headers:
+      access-control-allow-headers:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"ev,
-        esiR caDic,trS dsleontrsn naagtdsePaogHi e","website":"ocomw.otrsmfcw.wi","description":"
-        fairnioaoabnvtngts oignaroiene .ooeteg  gMl.vylanmiaimla  a mtea htnrdesplfeeaoattco
-        tzdaedr ontpepd e e fnrtvno nynet ic rhrrtnihssoeitsi tl do eraineuli  e  seiwnglIrfroocm
-        ee  es  slntieono ","CEO":"Say aetaaNdll","securityName":"afroMtoicroCostnp
-        rio","issueType":"cs","sector":"oIrmoinaftn","primarySicCode":7517,"employees":166961,"tags":["TcSsergyio
-        onelvhce","ga SaoarwdetcPfek","ootfmrniIna","sdnolati ie oDe d cSsaiRceg tese,rvgHtnPasran,"],"address":"
-        sc oyWMrat1oif","address2":null,"state":"gntoshaWni","city":"nedRodm","zip":"899350269-","country":"SU","phone":"14365197739"}'
-  recorded_at: Thu, 02 Sep 2021 10:40:57 GMT
+      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"
+        Rtrcdonag vaslnPrsanHtesa , s,eec DoSitegeidi","website":"s.fcotw.miowcowrm","description":"moratr
+        os I t ns nitnrnuaoeimnoef lwrrer ee b ya eimtet ntn znmr os n eoiiohotcaief
+        tne ate.e  rlas lnnotdlro eliniMtailcngetapgioso y n  rglsedeodaihe   enlfihaoaieoevdsdica
+        oete vfpvrpgtas.gtn","CEO":"a adeytSlalNa","securityName":"MCorarrtooois fipcnto","issueType":"sc","sector":"nmoainrfIot","primarySicCode":7604,"employees":163422,"tags":["co
+        nSclsviegeoeThyr","k cSraPawofeeagdt","iIfnornatmo","g,td,s oRgedn  l siiece
+        vHanostPretnDaseairSac"],"address":"r say1WMocfio t","address2":null,"state":"saWohngnti","city":"nRdedom","zip":"-925089936","country":"SU","phone":"14659701968"}'
+  recorded_at: Thu, 02 Sep 2021 13:11:19 GMT
 - request:
     method: get
     uri: https://sandbox.iexapis.com/v1/stock/MSFT/price?token=test-iex-api-publishable-token
@@ -77,48 +74,46 @@ http_interactions:
       - application/json; charset=utf-8
       User-Agent:
       - IEX Ruby Client/1.5.0
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
       code: 200
       message: OK
     headers:
-      Server:
+      server:
       - nginx
-      Date:
-      - Thu, 02 Sep 2021 10:40:58 GMT
-      Content-Type:
+      date:
+      - Thu, 02 Sep 2021 13:11:21 GMT
+      content-type:
       - application/json; charset=utf-8
-      Content-Length:
+      content-length:
       - '6'
-      Connection:
+      connection:
       - keep-alive
-      Set-Cookie:
-      - ctoken=bfbb2b3bfbac46fba81316613acf6829; Max-Age=43200; Path=/; Expires=Thu,
-        02 Sep 2021 22:40:58 GMT
-      Iexcloud-Messages-Used:
+      set-cookie:
+      - ctoken=9dbd064c0e40420cb74918170e02e2ea; Max-Age=43200; Path=/; Expires=Fri,
+        03 Sep 2021 01:11:21 GMT
+      iexcloud-messages-used:
       - '2'
-      Iexcloud-Credits-Used:
+      iexcloud-credits-used:
       - '2'
-      Iexcloud-Premium-Messages-Used:
+      iexcloud-premium-messages-used:
       - '0'
-      Iexcloud-Premium-Credits-Used:
+      iexcloud-premium-credits-used:
       - '0'
-      X-Content-Type-Options:
+      x-content-type-options:
       - nosniff
-      Strict-Transport-Security:
+      strict-transport-security:
       - max-age=15768000
-      Access-Control-Allow-Origin:
+      access-control-allow-origin:
       - "*"
-      Access-Control-Allow-Credentials:
+      access-control-allow-credentials:
       - 'true'
-      Access-Control-Allow-Methods:
+      access-control-allow-methods:
       - GET, OPTIONS
-      Access-Control-Allow-Headers:
+      access-control-allow-headers:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: UTF-8
-      string: '313.02'
-  recorded_at: Thu, 02 Sep 2021 10:40:58 GMT
+      string: '307.59'
+  recorded_at: Thu, 02 Sep 2021 13:11:20 GMT
 recorded_with: VCR 6.0.0

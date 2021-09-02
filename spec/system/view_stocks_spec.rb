@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ViewStocks', type: :system do
+RSpec.describe 'ViewStocks', vcr: { cassette_name: 'price/msft' }, type: :system do
   let(:buyer_user) { create(:user) }
 
   before do
