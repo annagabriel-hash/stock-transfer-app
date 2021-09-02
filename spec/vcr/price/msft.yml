@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.iexapis.com/v1/stock/MSFT/company?token=test-iex-api-publishable-token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - IEX Ruby Client/1.5.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 02 Sep 2021 10:27:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - ctoken=57d5cfadd8a64562b0977b4a78422430; Max-Age=43200; Path=/; Expires=Thu,
+        02 Sep 2021 22:27:39 GMT
+      Iexcloud-Messages-Used:
+      - '11'
+      Iexcloud-Credits-Used:
+      - '11'
+      Iexcloud-Premium-Messages-Used:
+      - '0'
+      Iexcloud-Premium-Credits-Used:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Request-Source
+    body:
+      encoding: ASCII-8BIT
+      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"a,
+        na or,elitnPcSste oiatsRneedDs casdvHi ergg","website":".towoworcsmm.ifwc","description":"  soeene
+        iIo rd tiseyaactte o r. i ufenlog.oeo  rda  rnnfensaispatldmttlenr owaia npg
+        naromvnMtnlyre mntne tvoaioon trn n difaoag sfohe  siecneealgortbetiivietrt   heoehreilei
+        tgpcnlsialems odz ","CEO":"d aalSytNalae","securityName":"roM orocnrotCatfiipso","issueType":"sc","sector":"oatnnoIirfm","primarySicCode":7719,"employees":167152,"tags":["ciTehcSogley
+        rensvo","PedSactr aekgaofw","orIftmoiann","esscDen Seriroa  ec e,Pantnl gRgvdsa,diHtiatos"],"address":"sM
+        1tciroyWa of","address2":null,"state":"nnashgtioW","city":"denmRod","zip":"28693959-0","country":"US","phone":"14515398970"}'
+  recorded_at: Thu, 02 Sep 2021 10:27:39 GMT
+- request:
+    method: get
+    uri: https://sandbox.iexapis.com/v1/stock/MSFT/price?token=test-iex-api-publishable-token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - IEX Ruby Client/1.5.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 02 Sep 2021 10:27:40 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '6'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - ctoken=4894563d6e4846808e93b56792568b1e; Max-Age=43200; Path=/; Expires=Thu,
+        02 Sep 2021 22:27:40 GMT
+      Iexcloud-Messages-Used:
+      - '2'
+      Iexcloud-Credits-Used:
+      - '2'
+      Iexcloud-Premium-Messages-Used:
+      - '0'
+      Iexcloud-Premium-Credits-Used:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Request-Source
+    body:
+      encoding: UTF-8
+      string: '303.98'
+  recorded_at: Thu, 02 Sep 2021 10:27:40 GMT
+recorded_with: VCR 6.0.0
