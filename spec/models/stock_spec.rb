@@ -12,4 +12,8 @@ RSpec.describe Stock, type: :model do
 
     it { is_expected.not_to be_valid }
   end
+
+  it 'is expected to have lookup method' do
+    expect(described_class).to respond_to :lookup
+  end
 end

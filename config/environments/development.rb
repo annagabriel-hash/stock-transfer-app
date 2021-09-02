@@ -76,4 +76,10 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   config.action_mailer.perform_deliveries = true
+
+  IEX::Api.configure do |config|
+    config.publishable_token = Rails.application.credentials.publishable_token
+    config.secret_token = Rails.application.credentials.secret_token,
+    config.endpoint = 'https://sandbox.iexapis.com/v1'
+  end
 end
