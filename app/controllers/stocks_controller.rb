@@ -3,11 +3,11 @@ class StocksController < ApplicationController
     if params[:stock]
       @stock = Stock.lookup(params[:stock])
       unless @stock
-        flash.now[:alert] = 'Please enter a valid symbol to search'
+        flash[:alert] = 'Please enter a valid symbol to search'
         redirect_to root_path
       end
     else
-      flash.now[:alert] = 'Please enter a ticker symbol'
+      flash[:alert] = 'Please enter a ticker symbol'
       redirect_to root_path
     end
   end

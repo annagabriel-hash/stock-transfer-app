@@ -11,6 +11,7 @@
 
 <% unless current_user.admin? %>
   <%= form_with url: search_stock_path, method: :get, local: true do |f| %>
+  <%= render "shared/error_messages", resource: @stock %>
     <div class="input-group">
       <%= f.text_field :stock, placeholder: 'Enter stock ticker symbol', autofocus: true, class: 'form-control', required: true %>
       <%= f.button sanitize('<i class="bi bi-search"></i>'), class: 'btn btn-success' %>
