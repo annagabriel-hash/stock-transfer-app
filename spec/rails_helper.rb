@@ -49,6 +49,7 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr'
   c.hook_into :webmock
+  vcr_mode = :once
   c.configure_rspec_metadata!
   c.filter_sensitive_data('test-iex-api-publishable-token') { ENV.fetch('IEX_PUBLISHABLE_TOKEN') { Rails.application.credentials.publishable_token } }
   c.filter_sensitive_data('test-iex-api-secret-token') { ENV.fetch('IEX_SECRET_TOKEN') { Rails.application.credentials.secret_token } }
