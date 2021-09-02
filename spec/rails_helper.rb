@@ -8,7 +8,6 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'factory_bot_rails'
 require 'vcr'
-require 'webmock/rspec'
 
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
@@ -49,9 +48,13 @@ end
 
 VCR.configure do |c|
   c.cassette_library_dir = Rails.root.join('spec/vcr')
-  c.hook_into :webmock
+  c.hook_into :faraday
   c.ignore_localhost = true
   c.configure_rspec_metadata!
+  c.default_cassette_options = {
+    match_requests_on: %i[method uri body]
+  }
+  c.allow_http_connections_when_no_cassette = true
   c.filter_sensitive_data('test-iex-api-publishable-token') { ENV.fetch('IEX_PUBLISHABLE_TOKEN') { Rails.application.credentials.publishable_token } }
   c.filter_sensitive_data('test-iex-api-secret-token') { ENV.fetch('IEX_SECRET_TOKEN') { Rails.application.credentials.secret_token } }
 end
