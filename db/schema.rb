@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_083705) do
+ActiveRecord::Schema.define(version: 2021_09_03_034434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "offers", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "user_id", null: false
+    t.float "price", null: false
+    t.integer "shares", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "type", null: false
+    t.integer "action", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id"], name: "index_offers_on_stock_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
 
   create_table "prices", force: :cascade do |t|
     t.bigint "stocks_id", null: false
@@ -77,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_09_02_083705) do
     t.index ["status"], name: "index_users_on_status"
   end
 
+  add_foreign_key "offers", "stocks"
+  add_foreign_key "offers", "users"
   add_foreign_key "prices", "stocks", column: "stocks_id"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
