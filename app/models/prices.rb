@@ -1,3 +1,3 @@
 class Price < ApplicationRecord
-  belongs_to :stocks
+  belongs_to :stock
 end
