@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :user_stocks, dependent: :destroy
   has_many :stocks, through: :user_stocks
+  has_many :buys, dependent: :destroy
+  has_many :sells, dependent: :destroy
   before_create :set_default_role
   after_create :send_email, if: :approved?
   enum status: { pending: 0, approved: 1 }
@@ -23,6 +25,16 @@ class User < ApplicationRecord
 
   def upgrade_account
     roles << Role.find_by(name: 'broker')
+  end
+
+  def shares(stock)
+    UserStock.where(user_id: id, stock: stock).first.shares
+  rescue StandardError
+    nil
+  end
+
+  def trades
+    Trade.where(buyer: user).or(Trade.where(seller: user))
   end
 
   private
