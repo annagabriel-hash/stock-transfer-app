@@ -15,4 +15,13 @@ module Helpers
       fill_in 'Password', with: user.password
     end
   end
+
+  module Stock
+    def search_stock
+      visit root_path
+      fill_in 'Enter stock ticker symbol', with: 'MSFT'
+      find_button('button').click
+      expect(page).to have_content 'Microsoft Corporation'
+    end
+  end
 end

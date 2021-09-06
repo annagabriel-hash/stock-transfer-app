@@ -1,2 +1,21 @@
 <h1><%= @stock.name %></h1>
 <h2>$ <%= @stock.market_price %></h2>
+
+<h2>Market Order</h2>
+<%= form_with model: @buy, local: true do |f| %>
+  <h3>Buy <%= @stock.ticker %></h3>
+  <%= f.hidden_field :ticker, value: @stock.ticker %>
+  <div class="mb-3">
+    <%= f.label :price, class: "form-label" %>
+    <%= f.number_field :price, autofocus: true, class: 'form-control', disabled: true, value: @stock.market_price %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :shares, class: "form-label" %>
+    <%= f.number_field :shares, autofocus: true, class: 'form-control', in: 1.0..max_shares(@stock.market_price), step: 1 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Buy #{@stock.ticker}", class: 'btn btn-primary' %>
+  </div>
+<% end %>
