@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_083705) do
+ActiveRecord::Schema.define(version: 2021_09_03_104713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buys", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "user_id", null: false
+    t.float "price", null: false
+    t.integer "shares", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "order_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id"], name: "index_buys_on_stock_id"
+    t.index ["user_id"], name: "index_buys_on_user_id"
+  end
 
   create_table "prices", force: :cascade do |t|
     t.bigint "stocks_id", null: false
@@ -34,12 +47,38 @@ ActiveRecord::Schema.define(version: 2021_09_02_083705) do
     t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
+  create_table "sells", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "user_id", null: false
+    t.float "price", null: false
+    t.integer "shares", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "order_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id"], name: "index_sells_on_stock_id"
+    t.index ["user_id"], name: "index_sells_on_user_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.string "ticker", null: false
     t.string "name"
     t.float "market_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "buy_id", null: false
+    t.bigint "sell_id"
+    t.float "price", null: false
+    t.integer "shares", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buy_id"], name: "index_trades_on_buy_id"
+    t.index ["sell_id"], name: "index_trades_on_sell_id"
+    t.index ["stock_id"], name: "index_trades_on_stock_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -77,7 +116,14 @@ ActiveRecord::Schema.define(version: 2021_09_02_083705) do
     t.index ["status"], name: "index_users_on_status"
   end
 
+  add_foreign_key "buys", "stocks"
+  add_foreign_key "buys", "users"
   add_foreign_key "prices", "stocks", column: "stocks_id"
+  add_foreign_key "sells", "stocks"
+  add_foreign_key "sells", "users"
+  add_foreign_key "trades", "buys"
+  add_foreign_key "trades", "sells"
+  add_foreign_key "trades", "stocks"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "user_stocks", "stocks"
