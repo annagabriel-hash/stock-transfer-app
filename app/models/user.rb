@@ -31,7 +31,7 @@ class User < ApplicationRecord
   def shares(stock)
     UserStock.where(user_id: id, stock: stock).first.shares
   rescue StandardError
-    nil
+    0
   end
 
   def trades
