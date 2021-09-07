@@ -24,6 +24,11 @@ class User < ApplicationRecord
     roles.exists?(admin_role_id)
   end
 
+  def broker?
+    broker_role_id = Role.find_by(name: 'broker').id
+    roles.exists?(broker_role_id)
+  end
+
   def upgrade_account
     roles << Role.find_by(name: 'broker')
   end

@@ -61,4 +61,18 @@ RSpec.describe 'BuyMarketOrder', vcr: { cassette_name: 'price/msft' }, type: :sy
       expect(Buy.count).to be_zero
     end
   end
+
+  context 'when user is not a broker' do
+    let(:buyer_user) { create(:random_user) }
+
+    before do
+      sign_out broker_user
+      sign_in buyer_user
+      search_stock
+    end
+
+    it 'does not show form page' do
+      expect(page).not_to have_selector('#buy_market_order_form')
+    end
+  end
 end

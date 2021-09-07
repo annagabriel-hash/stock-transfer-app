@@ -91,4 +91,18 @@ RSpec.describe 'SellStocks', vcr: { cassette_name: 'price/msft' }, type: :system
       expect(Sell.count).to be_zero
     end
   end
+
+  context 'when user is not a broker' do
+    let(:buyer_user) { create(:random_user) }
+
+    before do
+      sign_out broker_user
+      sign_in buyer_user
+      search_stock
+    end
+
+    it 'does not show form page' do
+      expect(page).not_to have_selector('#sell_limit_order_form')
+    end
+  end
 end
