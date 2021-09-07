@@ -4,6 +4,7 @@
 <h2>Market Order</h2>
 <%= form_with model: @buy, url: stock_buy_path, method: :post, id: 'buy_market_order_form', local: true do |f| %>
   <h3>Buy <%= @stock.ticker %></h3>
+  <%= render "shared/error_messages", resource: @buy %>
   <%= f.hidden_field :order_type, value: 'market_order' %>
   <%= f.hidden_field :ticker, value: @stock.ticker %>
   <div class="mb-3">
@@ -13,7 +14,7 @@
 
   <div class="mb-3">
     <%= f.label :shares, class: "form-label" %>
-    <%= f.number_field :shares, autofocus: true, class: 'form-control', in: 1.0..max_shares(@stock.market_price), step: 1 %>
+    <%= f.number_field :shares, autofocus: true, class: 'form-control', in: 0.0..max_shares(@stock.market_price), step: 1 %>
   </div>
 
   <div class="mb-3">
@@ -24,17 +25,18 @@
 <h2>Limit Order</h2>
 <%= form_with model: @sell, url: stock_sell_path, method: :post, id: 'sell_limit_order_form', local: true do |f| %>
   <h3>Sell <%= @stock.ticker %></h3>
+  <%= render "shared/error_messages", resource: @sell %>
   <%= f.hidden_field :ticker, value: @stock.ticker %>
   <%= f.hidden_field :order_type, value: 'limit_order' %>
 
   <div class="mb-3">
     <%= f.label :price, class: "form-label" %>
-    <%= f.number_field :price, autofocus: true, class: 'form-control' %>
+    <%= f.number_field :price, autofocus: true, class: 'form-control', required: true, min: 0 %>
   </div>
 
   <div class="mb-3">
     <%= f.label :shares, class: "form-label" %>
-    <%= f.number_field :shares, autofocus: true, class: 'form-control', min: 1, step: 1 %>
+    <%= f.number_field :shares, autofocus: true, class: 'form-control', in:1.0..shares_owned(@stock.ticker), step: 1 %>
   </div>
 
   <div class="mb-3">

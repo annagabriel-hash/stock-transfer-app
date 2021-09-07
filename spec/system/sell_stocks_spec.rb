@@ -63,4 +63,31 @@ RSpec.describe 'SellStocks', type: :system do
       expect(buyer_stock.shares).to eq(new_stock)
     end
   end
+
+  context 'with insufficient shares' do
+    before do
+      within '#sell_limit_order_form' do
+        fill_in 'Price', with: 350
+        fill_in 'Shares', with: 20_001
+        click_on 'Sell MSFT'
+      end
+    end
+
+    it 'does not create a sell order' do
+      expect(Sell.count).to be_zero
+    end
+  end
+
+  context 'without price' do
+    before do
+      within '#sell_limit_order_form' do
+        fill_in 'Shares', with: 20_001
+        click_on 'Sell MSFT'
+      end
+    end
+
+    it 'does not create a sell order' do
+      expect(Sell.count).to be_zero
+    end
+  end
 end

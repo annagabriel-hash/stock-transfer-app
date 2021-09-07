@@ -10,12 +10,13 @@ RSpec.describe 'BuyStocks', type: :system do
     create(:role, :admin)
     sign_in broker_user
     search_stock
-    buy_stock
   end
 
   context 'with valid stock' do
     let(:buy_order) { Buy.find_by(user: broker_user, stock: stock) }
     let(:trade) { Trade.where(buy: buy_order, stock: stock) }
+
+    before { buy_stock }
 
     it 'buys stock' do
       expect(Buy.count).to eq(1)
@@ -42,5 +43,18 @@ RSpec.describe 'BuyStocks', type: :system do
       new_balance = broker_user.balance - trade.first.amount
       expect(broker_user.reload.balance).to eq(new_balance)
     end
+  end
+
+  context 'with insufficient balance' do
+    subject { Buy.count }
+
+    before do
+      within '#buy_market_order_form' do
+        fill_in 'Shares', with: 10_000
+        click_on 'Buy MSFT'
+      end
+    end
+
+    it { is_expected.to be_zero }
   end
 end

@@ -5,19 +5,25 @@ class OrdersController < ApplicationController
     buy_order = @stock.buys.build(buy_stock_params)
     buy_order.user = current_user
     buy_order.price = @stock.market_price if buy_order.market_order?
-    buy_order.save
-    return if buy_order.matching_orders.any?
+    if buy_order.save
+      return if buy_order.matching_orders.any?
 
-    buy_order.fulfill_order
+      buy_order.fulfill_order
+    else
+      redirect_to search_stock_path(@stock)
+    end
   end
 
   def sell
     sell_order = @stock.sells.build(sell_stock_params)
     sell_order.user = current_user
-    sell_order.save
-    return if sell_order.matching_orders.blank?
+    if sell_order.save
+      return if sell_order.matching_orders.blank?
 
-    sell_order.fulfill_order
+      sell_order.fulfill_order
+    else
+      redirect_to search_stock_path(@stock)
+    end
   end
 
   private
