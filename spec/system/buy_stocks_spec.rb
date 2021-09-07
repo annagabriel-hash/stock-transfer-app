@@ -10,32 +10,36 @@ RSpec.describe 'BuyStocks', type: :system do
     create(:role, :admin)
     sign_in broker_user
     search_stock
+    buy_stock
   end
 
   context 'with valid stock' do
+    let(:buy_order) { Buy.find_by(user: broker_user, stock: stock) }
+    let(:trade) { Trade.where(buy: buy_order, stock: stock) }
+
     it 'buys stock' do
-      fill_in 'Shares', with: 10
-      expect { click_on 'Buy MSFT' }.to change(Buy, :count).to eq(1)
+      expect(Buy.count).to eq(1)
+    end
+
+    it 'saves stock shares bought' do
+      expect(buy_order.shares).to eq(10)
+    end
+
+    it 'saves stock share price' do
+      expect(buy_order.price).to eq(stock.market_price)
     end
 
     it 'creates trade' do
-      fill_in 'Shares', with: 10
-      expect { click_on 'Buy MSFT' }.to change(Trade, :count).to eq(1)
+      expect(trade).to exist
     end
 
     it 'updates user stock' do
-      fill_in 'Shares', with: 10
-      click_on 'Buy MSFT'
-      trade = Trade.last
       user_stock = UserStock.find_by(user: broker_user, stock: stock)
-      expect(user_stock.shares).to eq(trade.shares)
+      expect(user_stock.shares).to eq(trade.first.shares)
     end
 
     it 'updates user balance' do
-      fill_in 'Shares', with: 10
-      click_on 'Buy MSFT'
-      trade = Trade.last
-      new_balance = broker_user.balance - trade.amount
+      new_balance = broker_user.balance - trade.first.amount
       expect(broker_user.reload.balance).to eq(new_balance)
     end
   end
