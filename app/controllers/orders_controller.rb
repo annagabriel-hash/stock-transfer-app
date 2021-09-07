@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     buy_order.price = @stock.market_price if buy_order.market_order?
     if buy_order.save
       buy_order.fulfill_order
+      redirect_to user_portfolio_path(current_user)
     else
       redirect_to search_stock_path(@stock)
     end
@@ -17,6 +18,7 @@ class OrdersController < ApplicationController
     sell_order.user = current_user
     if sell_order.save
       sell_order.fulfill_order
+      redirect_to user_portfolio_path(current_user)
     else
       redirect_to search_stock_path(@stock)
     end

@@ -5,6 +5,7 @@ RSpec.describe 'ViewPortfolios', vcr: { cassette_name: 'price/msft' }, type: :sy
 
   let(:broker_user) { create(:user, :broker) }
   let(:stock) { Stock.find_by(ticker: 'MSFT') }
+  let(:user_stock) { UserStock.find_by(user: broker_user, stock: stock) }
 
   before do
     driven_by(:rack_test)
@@ -21,6 +22,10 @@ RSpec.describe 'ViewPortfolios', vcr: { cassette_name: 'price/msft' }, type: :sy
   context 'with stock' do
     it 'displays stock ticker' do
       expect(page).to have_content(stock.ticker)
+    end
+
+    it 'displays shares' do
+      expect(page).to have_content(number_with_delimiter(user_stock.shares))
     end
 
     it 'displays market price' do

@@ -13,7 +13,7 @@
     <% @stocks.each do |user_stock| %>
       <tr>
         <td><%= user_stock.stock.ticker %></td>
-        <td><%= user_stock.shares %></td>
+        <td><%= number_with_delimiter(user_stock.shares) %></td>
         <td><%= number_to_currency(user_stock.stock.market_price) %></td>
         <td><%= number_to_currency(user_stock.value) %></td>
       </tr>  
