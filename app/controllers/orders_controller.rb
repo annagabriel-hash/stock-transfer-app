@@ -1,28 +1,47 @@
 class OrdersController < ApplicationController
-  before_action :set_stock, only: %i[create]
+  before_action :set_stock, only: %i[buy sell]
 
-  def create
-    buy_order = @stock.buys.create(stock: @stock, order_type: 0, user: current_user, price: @stock.market_price, shares: params[:shares])
+  def buy
+    buy_order = @stock.buys.build(buy_stock_params)
+    buy_order.user = current_user
+    buy_order.price = @stock.market_price if buy_order.market_order?
+    buy_order.save
     return if buy_order.matching_orders.any?
 
     buy_order.fulfill_order
     trade = buy_order.trades.last
-    current_user.update(balance: trade.new_balance)
+  end
+
+  def sell
+    sell_order = @stock.sells.build(sell_stock_params)
+    sell_order.user = current_user
+    sell_order.save
+    return if sell_order.matching_orders.blank?
+
+    sell_order.fulfill_order
   end
 
   private
 
   def set_stock
-    @stock = Stock.check_db(params[:ticker])
+    @stock = Stock.check_db(resource[:ticker])
     if @stock.blank?
-      @stock = Stock.lookup(params[:ticker])
+      @stock = Stock.lookup(resource[:ticker])
       @stock.save
     else
       @stock
     end
   end
 
-  def stock_params
-    params.require(:buy).permit(:price, :shares)
+  def buy_stock_params
+    params.require(:buy).permit(:order_type, :price, :shares)
+  end
+
+  def sell_stock_params
+    params.require(:sell).permit(:order_type, :price, :shares)
+  end
+
+  def resource
+    params[:buy] || params[:sell]
   end
 end
