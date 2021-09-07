@@ -24,8 +24,16 @@ module Helpers
       expect(page).to have_content 'Microsoft Corporation'
     end
 
-    def buy_stock
+    def buy_market_order
       within '#buy_market_order_form' do
+        fill_in 'Shares', with: 10
+        click_on 'Buy MSFT'
+      end
+    end
+
+    def buy_limit_order
+      within '#buy_limit_order_form' do
+        fill_in 'Price', with: 350
         fill_in 'Shares', with: 10
         click_on 'Buy MSFT'
       end
