@@ -14,8 +14,8 @@
       <tr>
         <td><%= user_stock.stock.ticker %></td>
         <td><%= user_stock.shares %></td>
-        <td><%= user_stock.stock.market_price %></td>
-        <td><%= user_stock.value %></td>
+        <td><%= number_to_currency(user_stock.stock.market_price) %></td>
+        <td><%= number_to_currency(user_stock.value) %></td>
       </tr>  
     <% end %>
   </tbody>

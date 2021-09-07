@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'ViewPortfolios', vcr: { cassette_name: 'price/msft' }, type: :system do
+  include ActionView::Helpers::NumberHelper
+
   let(:broker_user) { create(:user, :broker) }
   let(:stock) { Stock.find_by(ticker: 'MSFT') }
 
@@ -22,12 +24,12 @@ RSpec.describe 'ViewPortfolios', vcr: { cassette_name: 'price/msft' }, type: :sy
     end
 
     it 'displays market price' do
-      expect(page).to have_content(stock.market_price)
+      expect(page).to have_content(number_to_currency(stock.market_price))
     end
 
     it 'displays total value' do
       total_value = stock.market_price * broker_user.shares(stock)
-      expect(page).to have_content(total_value)
+      expect(page).to have_content(number_to_currency(total_value))
     end
   end
 end
