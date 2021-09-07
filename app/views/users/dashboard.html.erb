@@ -10,6 +10,7 @@
 <% end %>
 
 <% unless current_user.admin? %>
+  <%= link_to 'Portfolio', user_portfolio_path(current_user) %>
   <%= form_with url: search_stock_path, method: :get, local: true do |f| %>
   <%= render "shared/error_messages", resource: @stock %>
     <div class="input-group">
@@ -18,5 +19,4 @@
     </div>
   <% end %>
 
-  <%= link_to 'Portfolio', user_portfolio_path(current_user) %>
 <% end %>
