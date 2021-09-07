@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @stock = Stock.new
   end
 
+  def portfolio
+    @stocks = current_user.portfolio
+  end
+
   def verify
     UserMailer.verify_email(current_user).deliver_later
     flash[:notice] = 'Verification email sent'
