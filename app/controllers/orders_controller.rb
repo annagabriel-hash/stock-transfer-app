@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     return if buy_order.matching_orders.any?
 
     buy_order.fulfill_order
-    trade = buy_order.trades.last
   end
 
   def sell
