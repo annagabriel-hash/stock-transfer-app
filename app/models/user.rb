@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :stocks, through: :user_stocks
   has_many :buys, dependent: :destroy
   has_many :sells, dependent: :destroy
+
   before_create :set_default_role
   after_create :send_email, if: :approved?
   enum status: { pending: 0, approved: 1 }
