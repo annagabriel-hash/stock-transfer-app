@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'ViewStocks', vcr: { cassette_name: 'price/msft' }, type: :system do
   let(:buyer_user) { create(:user) }
+  let(:stock) { Stock.find_by(ticker: 'MSFT') }
 
   before do
     driven_by(:rack_test)

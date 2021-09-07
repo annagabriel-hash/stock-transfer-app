@@ -1,0 +1,22 @@
+<h1>Portfolio</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock</th>
+      <th>Shares</th>
+      <th>Price</th>
+      <th>Total Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |user_stock| %>
+      <tr>
+        <td><%= user_stock.stock.ticker %></td>
+        <td><%= user_stock.shares %></td>
+        <td><%= user_stock.stock.market_price %></td>
+        <td><%= user_stock.value %></td>
+      </tr>  
+    <% end %>
+  </tbody>
+</table>

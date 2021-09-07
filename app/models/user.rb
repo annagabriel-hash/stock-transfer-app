@@ -35,7 +35,11 @@ class User < ApplicationRecord
   end
 
   def trades
-    Trade.where(buyer: user).or(Trade.where(seller: user))
+    Trade.where(buyer_id: id).or(Trade.where(seller: user))
+  end
+
+  def portfolio
+    UserStock.where('user_id = ? AND shares > 0', id)
   end
 
   private
