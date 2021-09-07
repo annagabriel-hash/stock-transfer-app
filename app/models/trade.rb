@@ -34,13 +34,9 @@ class Trade < ApplicationRecord
   private
 
   def update_buyer_stock
-    buyer_stock = UserStock.where(user: buyer, stock: stock).first
-    if buyer_stock.present?
-      buyer_stock.shares += shares
-      buyer_stock.save
-    else
-      UserStock.create(user: buyer, stock: stock, shares: shares)
-    end
+    buyer_stock = UserStock.find_or_create_by(user: buyer, stock: stock)
+    buyer_stock.shares += shares
+    buyer_stock.save
   end
 
   def close_orders

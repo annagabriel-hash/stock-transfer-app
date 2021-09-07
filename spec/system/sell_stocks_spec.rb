@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'SellStocks', type: :system do
+RSpec.describe 'SellStocks', vcr: { cassette_name: 'price/msft' }, type: :system do
   let(:stock) { create(:stock) }
   let(:broker_user) { create(:user, :broker) }
   let(:sell_order) { Sell.find_by(user: broker_user, stock: stock) }
@@ -34,9 +34,12 @@ RSpec.describe 'SellStocks', type: :system do
 
     it { is_expected.to be_present }
 
-    it 'has close orders', :aggregate_failures do
-      expect(trade.buy).to be_close
+    it 'has closed sell order' do
       expect(trade.sell).to be_close
+    end
+
+    it 'has closed buy order' do
+      expect(trade.buy).to be_close
     end
 
     it 'updates seller balance' do
@@ -47,8 +50,7 @@ RSpec.describe 'SellStocks', type: :system do
 
     it 'updates seller stock' do
       new_stock = 20_000 - trade.shares
-      seller_stock = UserStock.find_by(user: broker_user, stock: stock)
-      expect(seller_stock.shares).to eq(new_stock)
+      expect(broker_user.shares(stock)).to eq(new_stock)
     end
 
     it 'updates buyer_balance' do
@@ -59,8 +61,7 @@ RSpec.describe 'SellStocks', type: :system do
 
     it 'updates buyer stock' do
       new_stock = 0 + trade.shares
-      buyer_stock = UserStock.find_by(user: buyer_user, stock: stock)
-      expect(buyer_stock.shares).to eq(new_stock)
+      expect(buyer_user.shares(stock)).to eq(new_stock)
     end
   end
 
