@@ -19,7 +19,6 @@ class Buy < ApplicationRecord
 
   def fulfill_order
     trades.create(stock: stock, price: price, shares: shares)
-    close!
   end
 
   private

@@ -13,7 +13,7 @@ RSpec.describe Trade, type: :model do
 
   it 'is calculates new user balance' do
     new_balance = trade.buy.user.balance - trade.buy.amount
-    expect(trade.new_balance).to eq(new_balance)
+    expect(trade.new_balance[:buyer]).to eq(new_balance)
   end
 
   context 'with valid attributes' do
