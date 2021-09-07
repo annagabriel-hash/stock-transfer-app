@@ -23,5 +23,20 @@ module Helpers
       find_button('button').click
       expect(page).to have_content 'Microsoft Corporation'
     end
+
+    def buy_stock
+      within '#buy_market_order_form' do
+        fill_in 'Shares', with: 10
+        click_on 'Buy MSFT'
+      end
+    end
+
+    def sell_stock
+      within '#sell_limit_order_form' do
+        fill_in 'Price', with: 350
+        fill_in 'Shares', with: 10
+        click_on 'Sell MSFT'
+      end
+    end
   end
 end
