@@ -2,8 +2,9 @@
 <h2>$ <%= @stock.market_price %></h2>
 
 <h2>Market Order</h2>
-<%= form_with model: @buy, local: true do |f| %>
+<%= form_with model: @buy, url: stock_buy_path, method: :post, id: 'buy_market_order_form', local: true do |f| %>
   <h3>Buy <%= @stock.ticker %></h3>
+  <%= f.hidden_field :order_type, value: 'market_order' %>
   <%= f.hidden_field :ticker, value: @stock.ticker %>
   <div class="mb-3">
     <%= f.label :price, class: "form-label" %>
@@ -17,5 +18,26 @@
 
   <div class="mb-3">
     <%= f.submit "Buy #{@stock.ticker}", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<h2>Limit Order</h2>
+<%= form_with model: @sell, url: stock_sell_path, method: :post, id: 'sell_limit_order_form', local: true do |f| %>
+  <h3>Sell <%= @stock.ticker %></h3>
+  <%= f.hidden_field :ticker, value: @stock.ticker %>
+  <%= f.hidden_field :order_type, value: 'limit_order' %>
+
+  <div class="mb-3">
+    <%= f.label :price, class: "form-label" %>
+    <%= f.number_field :price, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :shares, class: "form-label" %>
+    <%= f.number_field :shares, autofocus: true, class: 'form-control', min: 1, step: 1 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Sell #{@stock.ticker}", class: 'btn btn-primary' %>
   </div>
 <% end %>
