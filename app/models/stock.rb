@@ -7,7 +7,6 @@ class Stock < ApplicationRecord
   has_many :buys, dependent: :destroy
   has_many :sells, dependent: :destroy
 
-
   def self.lookup(ticker_symbol)
     client = IEX::Api::Client.new
     begin
