@@ -124,4 +124,10 @@ Rails.application.configure do
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
+
+  IEX::Api.configure do |config|
+    config.publishable_token = ENV['IEX_PUBLISHABLE_TOKEN']
+    config.secret_token = ENV['IEX_SECRET_TOKEN']
+    config.endpoint = 'https://cloud.iexapis.com/v1'
+  end
 end
