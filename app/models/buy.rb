@@ -18,7 +18,9 @@ class Buy < ApplicationRecord
   end
 
   def fulfill_order
-    trades.create(stock: stock, price: price, shares: shares)
+    return trades.create(stock: stock, price: price, shares: shares) if market_order? && matching_orders.blank?
+
+    trades.create(stock: stock, price: price, shares: shares, sell: matching_orders.first) if limit_order? && matching_orders.present?
   end
 
   private
