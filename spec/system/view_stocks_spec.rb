@@ -5,6 +5,7 @@ RSpec.describe 'ViewStocks', vcr: { cassette_name: 'price/msft' }, type: :system
 
   before do
     driven_by(:rack_test)
+    create(:role, :admin)
     sign_in buyer_user
     visit root_path
   end
