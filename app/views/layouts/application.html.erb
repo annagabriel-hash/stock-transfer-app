@@ -12,8 +12,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class='h-100 w-100 mh-100 mw-100 overflow-auto position-absolute'>
-    <p class="notice position-absolute top-0 end-0"><%= notice %></p>
-    <p class="alert position-absolute top-0 end-0"><%= alert %></p>
+    <div class="container col-5 position-absolute top-1 end-0">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == 'notice' ? 'success' : 'danger'%> alert-dismissible fade show" role="alert">
+            <%= msg %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
