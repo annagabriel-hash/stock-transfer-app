@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://sandbox.iexapis.com/v1/stock/MSFT/company?token=test-iex-api-publishable-token
+    uri: https://cloud.iexapis.com/v1/stock/MSFT/company?token=test-iex-api-publishable-token
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       server:
       - nginx
       date:
-      - Tue, 07 Sep 2021 09:13:27 GMT
+      - Wed, 06 Oct 2021 07:51:21 GMT
       content-type:
       - application/json; charset=utf-8
       transfer-encoding:
@@ -29,8 +29,8 @@ http_interactions:
       connection:
       - keep-alive
       set-cookie:
-      - ctoken=143150677b6c4109af7bafbde8530507; Max-Age=43200; Path=/; Expires=Tue,
-        07 Sep 2021 21:13:27 GMT
+      - ctoken=7ee435cf91e943009edaeb53cfd85b7b; Max-Age=43200; Path=/; Expires=Wed,
+        06 Oct 2021 19:51:21 GMT
       iexcloud-messages-used:
       - '11'
       iexcloud-credits-used:
@@ -53,17 +53,18 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"rie
-        aDd tnSstesiidPalHceo et,aR,a vgsregonscn ","website":"tsmmocroiwowfw..c","description":"ed
-        r avfanlrvbasr  n eviep p olag dzii  oetto t  etoie osnetanodeonocydeatareeof
-        n nuasntlroeiitiagoI nhrtoonnc serirotn sectmlslaiMn ialrefg maigopnweehfghenne  ietstl.tiels
-        r  d eom mi r .ynat","CEO":" dayNlSltaeaa","securityName":"fspa rcMroiottoiCoorn","issueType":"sc","sector":"onirnaofmtI","primarySicCode":7410,"employees":166771,"tags":["osSiry
-        gcenTeevlhco","acfaeoPd erSwakgt","tmnnarfoioI","tdlgec agc,svdiePniasre,
-        aoteiRHosD a neSnrts "],"address":"cor s1tifaWyMo ","address2":null,"state":"gnnsoiathW","city":"nRoddme","zip":"2598096-39","country":"US","phone":"14493804404"}'
-  recorded_at: Tue, 07 Sep 2021 09:13:25 GMT
+      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"Data
+        Processing, Hosting, and Related Services","website":"www.microsoft.com","description":"Microsoft
+        enables digital transformation for the era of an intelligent cloud and an
+        intelligent edge. Its mission is to empower every person and every organization
+        on the planet to achieve more.","CEO":"Satya Nadella","securityName":"Microsoft
+        Corporation","issueType":"cs","sector":"Information","primarySicCode":7372,"employees":163000,"tags":["Technology
+        Services","Packaged Software","Information","Data Processing, Hosting, and
+        Related Services"],"address":"1 Microsoft Way","address2":null,"state":"Washington","city":"Redmond","zip":"98052-6399","country":"US","phone":"14258828080"}'
+  recorded_at: Wed, 06 Oct 2021 07:51:21 GMT
 - request:
     method: get
-    uri: https://sandbox.iexapis.com/v1/stock/MSFT/price?token=test-iex-api-publishable-token
+    uri: https://cloud.iexapis.com/v1/stock/MSFT/quote?token=test-iex-api-publishable-token
     body:
       encoding: US-ASCII
       string: ''
@@ -82,16 +83,16 @@ http_interactions:
       server:
       - nginx
       date:
-      - Tue, 07 Sep 2021 09:13:28 GMT
+      - Wed, 06 Oct 2021 07:51:22 GMT
       content-type:
       - application/json; charset=utf-8
-      content-length:
-      - '6'
+      transfer-encoding:
+      - chunked
       connection:
       - keep-alive
       set-cookie:
-      - ctoken=e4777a952f88497f84d441d4ca01ce42; Max-Age=43200; Path=/; Expires=Tue,
-        07 Sep 2021 21:13:28 GMT
+      - ctoken=42880bd2c0f14e1688008d5649f971d3; Max-Age=43200; Path=/; Expires=Wed,
+        06 Oct 2021 19:51:22 GMT
       iexcloud-messages-used:
       - '2'
       iexcloud-credits-used:
@@ -113,12 +114,16 @@ http_interactions:
       access-control-allow-headers:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
-      encoding: UTF-8
-      string: '303.02'
-  recorded_at: Tue, 07 Sep 2021 09:13:26 GMT
+      encoding: ASCII-8BIT
+      string: '{"avgTotalVolume":25717112,"calculationPrice":"close","change":5.65,"changePercent":0.01996,"close":288.76,"closeSource":"official","closeTime":1633464000458,"companyName":"Microsoft
+        Corporation","currency":"USD","delayedPrice":288.68,"delayedPriceTime":1633463997420,"extendedChange":-0.55,"extendedChangePercent":-0.0019,"extendedPrice":288.21,"extendedPriceTime":1633478398122,"high":290.398,"highSource":"15
+        minute delayed price","highTime":1633464005909,"iexAskPrice":0,"iexAskSize":0,"iexBidPrice":0,"iexBidSize":0,"iexClose":288.75,"iexCloseTime":1633463999991,"iexLastUpdated":1633464875236,"iexMarketPercent":0.020318789755093263,"iexOpen":288.62,"iexOpenTime":1633464875236,"iexRealtimePrice":288.62,"iexRealtimeSize":7,"iexVolume":507828,"lastTradeTime":1633464026485,"latestPrice":288.76,"latestSource":"Close","latestTime":"October
+        5, 2021","latestUpdate":1633464000458,"latestVolume":24993024,"low":284.046,"lowSource":"15
+        minute delayed price","lowTime":1633440601015,"marketCap":2169999996772,"oddLotDelayedPrice":288.67,"oddLotDelayedPriceTime":1633463997402,"open":284.14,"openTime":1633440602188,"openSource":"official","peRatio":35.87,"previousClose":283.11,"previousVolume":31350747,"primaryExchange":"NASDAQ","symbol":"MSFT","volume":24993024,"week52High":305.84,"week52Low":197.8,"ytdChange":0.30114797364040924,"isUSMarketOpen":false}'
+  recorded_at: Wed, 06 Oct 2021 07:51:22 GMT
 - request:
     method: get
-    uri: https://sandbox.iexapis.com/v1/stock/MSFT/company?token=test-iex-api-publishable-token
+    uri: https://cloud.iexapis.com/v1/stock/MSFT/company?token=test-iex-api-publishable-token
     body:
       encoding: US-ASCII
       string: ''
@@ -137,7 +142,7 @@ http_interactions:
       server:
       - nginx
       date:
-      - Tue, 07 Sep 2021 09:13:29 GMT
+      - Wed, 06 Oct 2021 07:51:24 GMT
       content-type:
       - application/json; charset=utf-8
       transfer-encoding:
@@ -145,8 +150,8 @@ http_interactions:
       connection:
       - keep-alive
       set-cookie:
-      - ctoken=27b40b1ee929463fa5c0384f4e702bc0; Max-Age=43200; Path=/; Expires=Tue,
-        07 Sep 2021 21:13:29 GMT
+      - ctoken=ad1d3b292fda4b3ea13fd660da0b3c7a; Max-Age=43200; Path=/; Expires=Wed,
+        06 Oct 2021 19:51:24 GMT
       iexcloud-messages-used:
       - '11'
       iexcloud-credits-used:
@@ -169,17 +174,18 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"stnr
-        egse,snliaeer Pe Sanc gddcivitoRHoa, stDa","website":"fowwmc.stocwomr.i","description":".  ynyelmtoaal  lerafnftg
-        oat ntdsnneeea  rrte rltairIoemronmigd fossde nbttiiii   ogfeaenituet gr aledaon
-        teoptav ngios cnihovsprnenioaiiepa o   azilnenrors m .nevn oetle escchrioodMsw
-        t lethe ","CEO":"Sladelaa tyaN","securityName":"otosariicCMopo ftnrro","issueType":"sc","sector":"niomIronfta","primarySicCode":7698,"employees":170208,"tags":["ecosorSl
-        ncyTigvhee"," ePraektfgoadcwSa","omnnIrifaot","eacRisdda risegcieHvst  gnrPstnSn,,aa
-        etDe ool"],"address":"oacrt fM oWs1iy","address2":null,"state":"otnhiagWsn","city":"dmedRno","zip":"959208396-","country":"SU","phone":"14611592539"}'
-  recorded_at: Tue, 07 Sep 2021 09:13:28 GMT
+      string: '{"symbol":"MSFT","companyName":"Microsoft Corporation","exchange":"NASDAQ","industry":"Data
+        Processing, Hosting, and Related Services","website":"www.microsoft.com","description":"Microsoft
+        enables digital transformation for the era of an intelligent cloud and an
+        intelligent edge. Its mission is to empower every person and every organization
+        on the planet to achieve more.","CEO":"Satya Nadella","securityName":"Microsoft
+        Corporation","issueType":"cs","sector":"Information","primarySicCode":7372,"employees":163000,"tags":["Technology
+        Services","Packaged Software","Information","Data Processing, Hosting, and
+        Related Services"],"address":"1 Microsoft Way","address2":null,"state":"Washington","city":"Redmond","zip":"98052-6399","country":"US","phone":"14258828080"}'
+  recorded_at: Wed, 06 Oct 2021 07:51:24 GMT
 - request:
     method: get
-    uri: https://sandbox.iexapis.com/v1/stock/MSFT/price?token=test-iex-api-publishable-token
+    uri: https://cloud.iexapis.com/v1/stock/MSFT/quote?token=test-iex-api-publishable-token
     body:
       encoding: US-ASCII
       string: ''
@@ -198,16 +204,16 @@ http_interactions:
       server:
       - nginx
       date:
-      - Tue, 07 Sep 2021 09:13:31 GMT
+      - Wed, 06 Oct 2021 07:51:25 GMT
       content-type:
       - application/json; charset=utf-8
-      content-length:
-      - '5'
+      transfer-encoding:
+      - chunked
       connection:
       - keep-alive
       set-cookie:
-      - ctoken=6d33237843284a42831943e960df451f; Max-Age=43200; Path=/; Expires=Tue,
-        07 Sep 2021 21:13:31 GMT
+      - ctoken=1f90828eb16a40a091df8b8698b5907c; Max-Age=43200; Path=/; Expires=Wed,
+        06 Oct 2021 19:51:25 GMT
       iexcloud-messages-used:
       - '2'
       iexcloud-credits-used:
@@ -229,7 +235,11 @@ http_interactions:
       access-control-allow-headers:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
-      encoding: UTF-8
-      string: '305.7'
-  recorded_at: Tue, 07 Sep 2021 09:13:29 GMT
+      encoding: ASCII-8BIT
+      string: '{"avgTotalVolume":25717112,"calculationPrice":"close","change":5.65,"changePercent":0.01996,"close":288.76,"closeSource":"official","closeTime":1633464000458,"companyName":"Microsoft
+        Corporation","currency":"USD","delayedPrice":288.68,"delayedPriceTime":1633463997420,"extendedChange":-0.55,"extendedChangePercent":-0.0019,"extendedPrice":288.21,"extendedPriceTime":1633478398122,"high":290.398,"highSource":"15
+        minute delayed price","highTime":1633464005909,"iexAskPrice":0,"iexAskSize":0,"iexBidPrice":0,"iexBidSize":0,"iexClose":288.75,"iexCloseTime":1633463999991,"iexLastUpdated":1633464875236,"iexMarketPercent":0.020318789755093263,"iexOpen":288.62,"iexOpenTime":1633464875236,"iexRealtimePrice":288.62,"iexRealtimeSize":7,"iexVolume":507828,"lastTradeTime":1633464026485,"latestPrice":288.76,"latestSource":"Close","latestTime":"October
+        5, 2021","latestUpdate":1633464000458,"latestVolume":24993024,"low":284.046,"lowSource":"15
+        minute delayed price","lowTime":1633440601015,"marketCap":2169999996772,"oddLotDelayedPrice":288.67,"oddLotDelayedPriceTime":1633463997402,"open":284.14,"openTime":1633440602188,"openSource":"official","peRatio":35.87,"previousClose":283.11,"previousVolume":31350747,"primaryExchange":"NASDAQ","symbol":"MSFT","volume":24993024,"week52High":305.84,"week52Low":197.8,"ytdChange":0.30114797364040924,"isUSMarketOpen":false}'
+  recorded_at: Wed, 06 Oct 2021 07:51:25 GMT
 recorded_with: VCR 6.0.0
