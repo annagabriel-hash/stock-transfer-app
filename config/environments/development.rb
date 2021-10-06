@@ -83,4 +83,5 @@ Rails.application.configure do
     config.endpoint = 'https://cloud.iexapis.com/v1'
     # config.endpoint = 'https://sandbox.iexapis.com/v1'
   end
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

@@ -4,3 +4,33 @@
   src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
     font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
 }
+
+/* =====================
+    A. GLOBAL STYLES
+  ====================== 
+*/
+
+html {
+  height: 100%;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	overflow: auto;
+	height: auto;
+}
+.bg-img-stock {
+  background-image: url(https://source.unsplash.com/osWDvhPlGLU);
+  background-size: cover;
+  background-position: center;
+  display: none;
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+}
+.bdrop-filter-blur {
+  backdrop-filter: blur(5px);
+  border: 10px solid transparent;
+}

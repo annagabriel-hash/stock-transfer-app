@@ -35,6 +35,8 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
 end
 
 group :test do
